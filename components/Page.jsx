@@ -8,17 +8,9 @@ var Page = React.createClass({
     statics: {
         storeListeners: [PageStore]
     },
-    propTypes: {
-        id: React.PropTypes.string.isRequired
-    },
     getInitialState: function() {
     	var pageStore = this.getStore(PageStore);
         return pageStore.getState();
-        /*
-        return {
-            content: pageStore.getState().content
-        };
-        */
     },
     onChange: function() {
         var state = this.getStore(PageStore).getState();

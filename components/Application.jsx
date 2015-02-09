@@ -22,7 +22,6 @@ var Application = React.createClass({
     getState: function () {
         var appStore = this.getStore(ApplicationStore);
         return {
-            currentPageName: appStore.getCurrentPageName(),
             pageTitle: appStore.getPageTitle(),
             route: appStore.getCurrentRoute(),
             pages: appStore.getPages()
@@ -33,14 +32,10 @@ var Application = React.createClass({
     },
     render: function () {
         var output = '';
-        //console.log(this.state.route);
-        switch (this.state.currentPageName) {
-            case 'home':
-                //output = <Home/>;
-                output = <Page context={this.props.context} id={this.state.route.config.title()}/>;
-                break;
-            case 'about':
-                output = <Page context={this.props.context} id={this.state.route.config.title()}/>;
+        console.log(this.state.route);
+        switch (this.state.route.config.type) {
+            case 'page':
+                output = <Page context={this.props.context} />;
                 break;
         }
         return (

@@ -7,11 +7,13 @@ module.exports = {
         path: '/',
         method: 'get',
         page: 'home',
+        type: 'page',
         title: function() { return 'Home'},
         action: loadPage.static
     },
     about: {
         path: '/about',
+        type: 'page',
         method: 'get',
         page: 'about',
         title: function() { return 'About'},
