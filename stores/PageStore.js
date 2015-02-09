@@ -13,7 +13,7 @@ var PageStore = createStore({
     },
     handleContentChange: function (payload) {
         console.log('PageStore.handleContentChange')
-        this.content = 'content for page with id '+payload.id;
+        this.content = payload.content;
         this.emitChange();
     },
     handlers: {
@@ -25,11 +25,9 @@ var PageStore = createStore({
         };
     },
     dehydrate: function () {
-        console.log('pagestore dehydrate');
         return this.getState();
     },
     rehydrate: function (state) {
-        console.log('pagestore rehydrate');
         this.content = state.content;
     }
 });

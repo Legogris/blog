@@ -14,15 +14,23 @@ var serialize = require('serialize-javascript');
 var navigateAction = require('flux-router-component').navigateAction;
 var debug = require('debug')('blog');
 var React = require('react');
+
 var app = require('./app');
+var fetchr = app.getPlugin('FetchrPlugin');
 var htmlComponent = React.createFactory(require('./components/Html.jsx'));
+var pageService = require('./services/PageService.js');
 
 var server = express();
 server.set('state namespace', 'App');
 server.use('/public', express.static(__dirname + '/build'));
 
+fetchr.registerService(pageService);
+server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
+
 server.use(function (req, res, next) {
-    var context = app.createContext();
+    var context = app.createContext({
+        req: req
+    });
 
     debug('Executing navigate action');
     context.getActionContext().executeAction(navigateAction, {
@@ -39,7 +47,7 @@ server.use(function (req, res, next) {
 
         debug('Exposing context state');
         var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';';
-        console.log(exposed);
+        //console.log(exposed);
         debug('Rendering Application component into html');
         var appComponent = app.getAppComponent();
         var html = React.renderToStaticMarkup(htmlComponent({

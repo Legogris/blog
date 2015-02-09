@@ -33,7 +33,7 @@ var Application = React.createClass({
     },
     render: function () {
         var output = '';
-        console.log(this.state.route);
+        //console.log(this.state.route);
         switch (this.state.currentPageName) {
             case 'home':
                 //output = <Home/>;
@@ -53,7 +53,7 @@ var Application = React.createClass({
 
     componentDidUpdate: function(prevProps, prevState) {
         console.log('app.componentDidUpdate');
-        var newState = this.state;
+        //var newState = this.state;
         if (newState.pageTitle === prevState.pageTitle) {
             return;
         }
