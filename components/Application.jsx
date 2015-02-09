@@ -53,7 +53,7 @@ var Application = React.createClass({
 
     componentDidUpdate: function(prevProps, prevState) {
         console.log('app.componentDidUpdate');
-        //var newState = this.state;
+        var newState = this.state;
         if (newState.pageTitle === prevState.pageTitle) {
             return;
         }
