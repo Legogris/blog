@@ -8,7 +8,7 @@ module.exports = {
         method: 'get',
         page: 'home',
         type: 'page',
-        title: function() { return 'Home'},
+        title: 'Home',
         action: loadPage.static
     },
     about: {
@@ -16,21 +16,13 @@ module.exports = {
         type: 'page',
         method: 'get',
         page: 'about',
-        title: function() { return 'About'},
+        title: 'About',
         action: loadPage.static
     },
-    dynamic: {
-        path: '/dynamic',
-        title: function() { return 'dynamic';},
-        method: 'get',
-        page: 'dynamic',
-        action: loadPage.dynamic
-    },
     post: {
-        path: '/:cat/:year/:id',
-        title: function() { return 'xxx';},
+        path: '/:cat/:year(\\d{4})/:slug',
         method: 'get',
-        page: 'post',
-        action: loadPage.dynamic
+        type: 'post',
+        action: loadPage.post
     }
 };

@@ -12,9 +12,7 @@ module.exports = {
 		        page: page
 		    });
 		});
-	    context.dispatch('UPDATE_PAGE_TITLE', {
-	        pageTitle: payload.config.title
-	    });
+	    context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	    done();
 	},
 	dynamic: function(context, payload, done) {

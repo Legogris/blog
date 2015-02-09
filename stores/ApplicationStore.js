@@ -5,7 +5,8 @@ var pagesConfig = require('../configs/pages');
 var ApplicationStore = createStore({
     storeName: 'ApplicationStore',
     handlers: {
-        'CHANGE_ROUTE_SUCCESS' : 'handleNavigate'
+        'CHANGE_ROUTE_SUCCESS' : 'onNavigate',
+        'UPDATE_PAGE_TITLE': 'onTitleChange'
     },
     initialize: function () {
         this.currentPage = null;
@@ -13,7 +14,10 @@ var ApplicationStore = createStore({
         this.pages = pagesConfig;
         this.pageTitle = '';
     },
-    handleNavigate: function (route) {
+    onTitleChange: function(title) {
+        this.pageTitle = title;
+    },
+    onNavigate: function (route) {
         if (this.currentRoute && (this.currentRoute.url === route.url)) {
             return;
         }
@@ -25,7 +29,7 @@ var ApplicationStore = createStore({
         this.emitChange();
     },
     getPageTitle: function () {
-        return this.currentRoute.config.title();
+        return this.pageTitle;
     },
     getCurrentPage: function () {
         return this.currentPage;

@@ -27,7 +27,7 @@ var Nav = React.createClass({
 
             return (
                 <li className={className} key={link.path}>
-                    <NavLink routeName={link.page} context={context}>{link.title()}</NavLink>
+                    <NavLink routeName={link.page} context={context}>{link.title}</NavLink>
                 </li>
             );
         });
