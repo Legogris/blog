@@ -7,9 +7,9 @@ module.exports = {
 				console.log('errorskates', err);
 				return;
 			}
-		    context.dispatch('LOAD_PAGE', {
+		    context.dispatch('LOAD_PAGES', {
 		        id: payload.config.page,
-		        page: page
+		        pages: [page]
 		    });
 		});
 	    context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);

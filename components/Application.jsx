@@ -3,7 +3,7 @@ var React = require('react');
 var Nav = require('./Nav.jsx');
 var Home = require('./Home.jsx');
 var About = require('./About.jsx');
-var Page = require('./Page.jsx');
+var PageList = require('./PageList.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouterMixin = require('flux-router-component').RouterMixin;
 var StoreMixin = require('fluxible').StoreMixin;
@@ -36,7 +36,7 @@ var Application = React.createClass({
         console.log(this.state.route);
         switch (this.state.route.config.type) {
             case 'page':
-                output = <Page context={this.props.context} />;
+                output = <PageList context={this.props.context} />;
                 break;
         }
         return (
