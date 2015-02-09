@@ -1,6 +1,6 @@
 'use strict';
 var createStore = require('fluxible/utils/createStore');
-var routesConfig = require('../configs/routes');
+var pagesConfig = require('../configs/pages');
 
 var ApplicationStore = createStore({
     storeName: 'ApplicationStore',
@@ -10,7 +10,7 @@ var ApplicationStore = createStore({
     initialize: function () {
         this.currentPage = null;
         this.currentRoute = null;
-        this.pages = routesConfig;
+        this.pages = pagesConfig;
         this.pageTitle = '';
     },
     handleNavigate: function (route) {
