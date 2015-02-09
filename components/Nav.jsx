@@ -21,7 +21,6 @@ var Nav = React.createClass({
         var linkHTML = Object.keys(links).map(function (name) {
             var className = '';
             var link = links[name];
-
             if (selected === name) {
                 className = 'pure-menu-selected';
             }

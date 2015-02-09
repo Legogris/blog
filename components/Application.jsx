@@ -24,7 +24,8 @@ var Application = React.createClass({
         return {
             pageTitle: appStore.getPageTitle(),
             route: appStore.getCurrentRoute(),
-            pages: appStore.getPages()
+            pages: appStore.getPages(),
+            currentPage: appStore.getCurrentPage()
         };
     },
     onChange: function () {
@@ -40,7 +41,7 @@ var Application = React.createClass({
         }
         return (
             <div>
-                <Nav selected={this.state.currentPageName} links={this.state.pages} context={this.props.context}/>
+                <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
                 {output}
             </div>
         );

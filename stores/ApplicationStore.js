@@ -8,7 +8,6 @@ var ApplicationStore = createStore({
         'CHANGE_ROUTE_SUCCESS' : 'handleNavigate'
     },
     initialize: function () {
-        this.currentPageName = null;
         this.currentPage = null;
         this.currentRoute = null;
         this.pages = routesConfig;
@@ -19,16 +18,17 @@ var ApplicationStore = createStore({
             return;
         }
 
-        var pageName = route.config.page;
-        var page = this.pages[pageName];
+        var page = route.config.page;
 
-        this.currentPageName = pageName;
         this.currentPage = page;
         this.currentRoute = route;
         this.emitChange();
     },
     getPageTitle: function () {
-        return this.pageTitle;
+        return this.currentRoute.config.title();
+    },
+    getCurrentPage: function () {
+        return this.currentPage;
     },
     getCurrentRoute: function () {
         return this.currentRoute;
@@ -38,7 +38,6 @@ var ApplicationStore = createStore({
     },
     dehydrate: function () {
         return {
-            currentPageName: this.currentPageName,
             currentPage: this.currentPage,
             pages: this.pages,
             route: this.currentRoute,
@@ -46,7 +45,6 @@ var ApplicationStore = createStore({
         };
     },
     rehydrate: function (state) {
-        this.currentPageName = state.currentPageName;
         this.currentPage = state.currentPage;
         this.pages = state.pages;
         this.currentRoute = state.route;
