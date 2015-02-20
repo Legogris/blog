@@ -1,8 +1,6 @@
 'use strict';
 var React = require('react');
 var Nav = require('./Nav.jsx');
-var Home = require('./Home.jsx');
-var About = require('./About.jsx');
 var PageList = require('./PageList.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouterMixin = require('flux-router-component').RouterMixin;

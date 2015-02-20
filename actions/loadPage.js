@@ -7,13 +7,10 @@ module.exports = {
 				console.log('errorskates', err);
 				return;
 			}
-		    context.dispatch('LOAD_PAGES', {
-		        id: payload.config.page,
-		        pages: [page]
-		    });
+		    context.dispatch('LOAD_PAGES', { pages: [page] });
+		    done();
 		});
 	    context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
-	    done();
 	},
 	dynamic: function(context, payload, done) {
 	    context.dispatch('LOAD_PAGE', {
@@ -23,5 +20,16 @@ module.exports = {
 	        pageTitle: payload.config.title
 	    });
 	    done();
+	},
+	post: function(context, payload, done) {
+		context.service.read('post', payload.params, {}, function(err, post) {
+			if(err || !post) {
+				console.log('errorpost', err);
+			}
+			context.dispatch('LOAD_POSTS', {
+				posts: [post]
+			});
+			done();
+		});
 	}
 };

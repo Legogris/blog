@@ -12,7 +12,14 @@ var PageStore = createStore({
         this.pages = [];
     },
     handlers: {
-        'LOAD_PAGES': 'handleLoadPages'
+        'LOAD_PAGES': 'handleLoadPages',
+        'LOAD_POSTS': 'handleLoadPosts'
+    },
+    handleLoadPosts: function (payload) {
+        console.log('WOOP', payload);
+        //console.log('PageStore.handleContentChange', payload.pages)
+        this.pages = payload.posts.map(function(post) {post.type = 'post'; return post;});
+        this.emitChange();
     },
     handleLoadPages: function (payload) {
         //console.log('PageStore.handleContentChange', payload.pages)

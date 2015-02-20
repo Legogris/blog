@@ -18,13 +18,15 @@ var React = require('react');
 var app = require('./app');
 var fetchr = app.getPlugin('FetchrPlugin');
 var htmlComponent = React.createFactory(require('./components/Html.jsx'));
-var pageService = require('./services/PageService.js');
+
 
 var server = express();
 server.set('state namespace', 'App');
 server.use('/public', express.static(__dirname + '/build'));
 
-fetchr.registerService(pageService);
+//SERVICES
+fetchr.registerService(require('./services/PageService.js'));
+fetchr.registerService(require('./services/PostService.js'));
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
 server.use(function (req, res, next) {

@@ -14,14 +14,20 @@ var PageList = React.createClass({
         return pageStore.getState();
     },
     onChange: function() {
+        console.log('pageList onChange', state);
         var state = this.getStore(PageStore).getState();
         this.setState(state);
-        console.log('pageList onChange', state);
     },
     render: function() {
         console.log('PageList.render', this.state.pages)
         var pagesHTML = this.state.pages.map(function(page) {
-            return (<Page key={page.title} title={page.title} content={page.content} />);
+            switch(page.type) {
+                case 'post':
+                    return (<Page key={page.title} title={page.title} content={page.content} />);
+                    break;
+                default:
+                    return (<Page key={page.title} title={page.title} content={page.content} />);
+            }
         });
         console.log(pagesHTML);
         return <div>{pagesHTML}</div>;

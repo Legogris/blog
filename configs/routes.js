@@ -22,7 +22,7 @@ module.exports = {
     post: {
         path: '/:cat/:year(\\d{4})/:slug',
         method: 'get',
-        type: 'post',
+        type: 'page',
         action: loadPage.post
     }
 };
