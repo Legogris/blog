@@ -1,7 +1,7 @@
 'use strict';
 
 var loadPosts = function(context, done) {
-	return function(err, posts) {
+	return (err, posts) => {
 		if(err || !posts) {
 			console.log('errorpost', err);
 		}

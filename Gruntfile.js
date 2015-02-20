@@ -23,6 +23,7 @@ module.exports = function (grunt) {
                 script: './server.js',
                 options: {
                     ignore: ['build/**'],
+                    nodeArgs: ['--harmony'],
                     ext: 'js,jsx'
                 }
             }

@@ -37,7 +37,7 @@
     "jsx-loader": "~0.12.0",
     "nodemon": "^1.2.1",
     "precommit-hook": "^1.0.7",
-    "webpack": "^1.4.12",
+    "webpack": "git://github.com/webpack/webpack.git#harmony",
     "webpack-dev-server": "^1.6.5"
   }
 }
