@@ -24,5 +24,11 @@ module.exports = {
         method: 'get',
         type: 'page',
         action: loadPage.post
+    },
+    year: {
+        path: '/:cat/:year(\\d{4})',
+        method: 'get',
+        type: 'page',
+        action: loadPage.year
     }
 };

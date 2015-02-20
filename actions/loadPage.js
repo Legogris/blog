@@ -1,5 +1,18 @@
 'use strict';
 
+var loadPosts = function(context, done) {
+	return function(err, posts) {
+		if(err || !posts) {
+			console.log('errorpost', err);
+		}
+		//TODO: posts === [], then  404
+		context.dispatch('LOAD_POSTS', {
+			posts: posts
+		});
+		done();
+	};
+};
+
 module.exports = {
 	static: function(context, payload, done) {
 		context.service.read('page', {id: payload.config.page}, {}, function(err, page) {
@@ -22,14 +35,9 @@ module.exports = {
 	    done();
 	},
 	post: function(context, payload, done) {
-		context.service.read('post', payload.params, {}, function(err, post) {
-			if(err || !post) {
-				console.log('errorpost', err);
-			}
-			context.dispatch('LOAD_POSTS', {
-				posts: [post]
-			});
-			done();
-		});
+		context.service.read('post', {slug: payload.params.slug}, {}, loadPosts(context, done));
+	},
+	year: function(context, payload, done) {
+		context.service.read('post', {year: payload.params.year}, {}, loadPosts(context, done))
 	}
 };
