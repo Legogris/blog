@@ -30,5 +30,11 @@ module.exports = {
         method: 'get',
         type: 'page',
         action: loadPage.year
+    },
+    cat: {
+        path: '/:cat',
+        method: 'get',
+        type: 'page',
+        action: loadPage.cat
     }
 };

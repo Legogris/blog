@@ -39,5 +39,8 @@ module.exports = {
 	},
 	year: function(context, payload, done) {
 		context.service.read('post', {year: payload.params.year}, {}, loadPosts(context, done))
+	},
+	cat: function(context, payload, done) {
+		context.service.read('post', {cat: payload.params.cat}, {}, loadPosts(context, done))
 	}
 };

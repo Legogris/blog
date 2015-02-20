@@ -8,10 +8,11 @@ var pages = {
 module.exports = {
 	name: 'post',
 	read: function(req, resource, params, config, cb) {
+		var data = [];
 		if(typeof params.slug !== 'undefined') {
-			var data = [pages[params.slug]];
+			data = [pages[params.slug]];
 		} else if(typeof params.year !== 'undefined') {
-			var data = [pages.hej, pages.hopp];
+			data = [pages.hej, pages.hopp];
 		}
 		console.log('FETCH DATA', resource, params, config, data);
 		cb(null, data);
