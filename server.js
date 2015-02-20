@@ -9,6 +9,9 @@
 
 require('node-jsx').install({ extension: '.jsx' });
 
+//ES6 Shims
+require('object.assign').shim();
+
 var express = require('express');
 var serialize = require('serialize-javascript');
 var navigateAction = require('flux-router-component').navigateAction;

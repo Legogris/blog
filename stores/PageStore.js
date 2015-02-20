@@ -16,13 +16,12 @@ var PageStore = createStore({
         'LOAD_POSTS': 'handleLoadPosts'
     },
     handleLoadPosts: function (payload) {
-        console.log('WOOP', payload);
-        //console.log('PageStore.handleContentChange', payload.pages)
-        this.pages = payload.posts.map(function(post) {post.type = 'post'; return post;});
+        var x = Object.assign({}, {})
+        console.log(payload);
+        this.pages = payload.posts.map((post) => Object.assign(post, {type: 'post'}));
         this.emitChange();
     },
     handleLoadPages: function (payload) {
-        //console.log('PageStore.handleContentChange', payload.pages)
         this.pages = payload.pages;
         this.emitChange();
     },
