@@ -7,6 +7,7 @@ function addVendor(name, path) {
     var c = config.webpack.dev;
     c.resolve.alias[name] = path;
     c.module.noParse.push(new RegExp('^'+path));
+    c.entry.vendors.push(name);
 }
 
 var config = {
@@ -45,7 +46,7 @@ var config = {
             },
             entry: {
                 app: './client.js',
-                vendors: ['react', 'fluxible']
+                vendors: []
             },
             plugins: [
                 new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
