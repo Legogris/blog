@@ -26,6 +26,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.12.2"
+    "react": "~0.12.2",
+    "fluxible": "git+https://github.com/yahoo/fluxible#~0.2.2"
   }
 }
