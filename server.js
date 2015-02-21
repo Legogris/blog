@@ -72,3 +72,12 @@ server.use(function (req, res, next) {
 var port = process.env.PORT || 3000;
 server.listen(port);
 console.log('Listening on port ' + port);
+
+
+if(server.get('env') === 'development') {
+    require('http').request({
+        host: 'localhost',
+        port: 35729,
+        path: '/changed?files=/'
+    }).end()
+}

@@ -13,11 +13,12 @@ var Html = React.createClass({
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" />
             </head>
+
             <body>
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
             </body>
             <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
-            <script src="/public/js/main.js"></script>
+            <script src="//localhost:35729/livereload.js"></script>
             </html>
         );
     }

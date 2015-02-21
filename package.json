@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "grunt concurrent:dev",
+    "dev": "grunt livereload concurrent:dev",
     "lint": "grunt jshint"
   },
   "dependencies": {
@@ -40,6 +40,7 @@
     "nodemon": "^1.2.1",
     "object.assign": "^1.1.1",
     "precommit-hook": "^1.0.7",
+    "tiny-lr": "^0.1.5",
     "webpack": "git://github.com/webpack/webpack.git#harmony",
     "webpack-dev-server": "^1.6.5"
   }
