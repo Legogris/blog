@@ -1,60 +1,77 @@
 'use strict';
 
-module.exports = function (grunt) {
-    grunt.initConfig({
-        clean: ['build'],
-        concurrent: {
-            dev: ['nodemon:app', 'webpack:dev'],
+var bower_dir = __dirname + '/bower_components';
+
+function addVendor(name, path) {
+    var c = config.webpack.dev;
+    c.resolve.alias[name] = path;
+    c.module.noParse.push(new RegExp(path));
+}
+
+var config = {
+    clean: ['build'],
+    concurrent: {
+        dev: ['nodemon:app', 'webpack:dev'],
+        options: {
+            logConcurrentOutput: true
+        }
+    },
+    jshint: {
+        all: [
+            '*.js',
+            '{actions,configs,components,services,stores}/**/*.js'
+        ],
+        options: {
+            jshintrc: true
+        }
+    },
+    nodemon: {
+        app: {
+            script: './server.js',
             options: {
-                logConcurrentOutput: true
-            }
-        },
-        jshint: {
-            all: [
-                '*.js',
-                '{actions,configs,components,services,stores}/**/*.js'
-            ],
-            options: {
-                jshintrc: true
-            }
-        },
-        nodemon: {
-            app: {
-                script: './server.js',
-                options: {
-                    ignore: ['build/**'],
-                    nodeArgs: ['--harmony'],
-                    ext: 'js,jsx'
-                }
-            }
-        },
-        webpack: {
-            dev: {
-                resolve: {
-                    extensions: ['', '.js', '.jsx']
-                },
-                entry: './client.js',
-                output: {
-                    path: './build/js',
-                    publicPath: '/public/js/',
-                    filename: '[name].js'
-                },
-                module: {
-                    loaders: [
-                        { test: /\.css$/, loader: 'style!css' },
-                        { test: /\.jsx$/, loader: 'jsx-loader' },
-                        { test: /\.json$/, loader: 'json-loader'}
-                    ]
-                },
-                stats: {
-                    colors: true
-                },
-                devtool: 'source-map',
-                watch: true,
-                keepalive: true
+                ignore: ['build/**'],
+                nodeArgs: ['--harmony'],
+                ext: 'js,jsx'
             }
         }
-    });
+    },
+    webpack: {
+        dev: {
+            resolve: {
+                extensions: ['', '.js', '.jsx'],
+                alias: {
+                }
+            },
+            entry: './client.js',
+            output: {
+                path: './build/js',
+                publicPath: '/public/js/',
+                filename: '[name].js'
+            },
+            module: {
+                noParse: [bower_dir + '/react/react.min.js'],
+                loaders: [
+                    { test: /\.css$/, loader: 'style!css' },
+                    { test: /\.jsx$/, loader: 'jsx-loader' },
+                    { test: /\.json$/, loader: 'json-loader'}
+                ]
+            },
+            stats: {
+                colors: true
+            },
+            devtool: 'sourcemap',
+            watch: true,
+            keepalive: true
+        }
+    }
+};
+
+addVendor('react', bower_dir + '/react/react.min.js');
+
+
+
+module.exports = function (grunt) {
+    grunt.initConfig(config);
 
     // libs
     grunt.loadNpmTasks('grunt-contrib-clean');

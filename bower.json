@@ -1,0 +1,31 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "authors": [
+    "Robert Edstrom <legogris@legogris.se>"
+  ],
+  "description": "My blawg :3",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "blog",
+    "react",
+    "fluxible",
+    "isomorphic"
+  ],
+  "license": "MIT",
+  "homepage": "http://legogris.se",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
