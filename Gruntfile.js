@@ -62,6 +62,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-webpack');
+    grunt.loadNpmTasks('grunt-pure-grids');
 
     // tasks
     grunt.registerTask('default', ['clean', 'jshint', 'concurrent:dev']);
