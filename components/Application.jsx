@@ -38,9 +38,14 @@ var Application = React.createClass({
                 break;
         }
         return (
-            <div>
-                <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
-                {output}
+            <div id="layout" className="pure-g">
+                <div className="pure-u-1 pure-u-md-3-4">
+                    <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
+                    {output}
+                </div>
+                <div id="sidebar" className="pure-u-1 pure-u-md-1-4">
+                    <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
+                </div>
             </div>
         );
     },

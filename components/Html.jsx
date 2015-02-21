@@ -11,12 +11,7 @@ var Html = React.createClass({
                 <title>{this.props.context.getStore(ApplicationStore).getPageTitle()}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />
-                <!--[if lte IE 8]>
-                    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
-                <![endif]-->
-                <!--[if gt IE 8]><!-->
-                    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
-                <!--<![endif]-->
+                <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" />
             </head>
             <body>
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
@@ -29,3 +24,4 @@ var Html = React.createClass({
 });
 
 module.exports = Html;
+
