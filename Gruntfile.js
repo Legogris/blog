@@ -1,11 +1,12 @@
 'use strict';
 
 var bower_dir = __dirname + '/bower_components';
+var webpack = require('webpack');
 
 function addVendor(name, path) {
     var c = config.webpack.dev;
     c.resolve.alias[name] = path;
-    c.module.noParse.push(new RegExp(path));
+    c.module.noParse.push(new RegExp('^'+path));
 }
 
 var config = {
@@ -42,7 +43,13 @@ var config = {
                 alias: {
                 }
             },
-            entry: './client.js',
+            entry: {
+                app: './client.js',
+                vendors: ['react', 'fluxible']
+            },
+            plugins: [
+                new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+            ],
             output: {
                 path: './build/js',
                 publicPath: '/public/js/',
