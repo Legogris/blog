@@ -27,6 +27,7 @@ app.rehydrate(dehydratedState, function (err, context) {
     debugClient('React Rendering');
     React.render(app.getAppComponent()({
         context: context.getComponentContext()
+        //to disable auto-scrolling: enableScroll: false
     }), mountNode, function () {
         debugClient('React Rendered');
     });
