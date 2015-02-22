@@ -27,11 +27,14 @@ module.exports = {
 	},
 	post: function(context, payload, done) {
 		context.service.read('post', {slug: payload.params.slug}, {}, loadPosts(context, done));
+	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	},
 	year: function(context, payload, done) {
 		context.service.read('post', {year: payload.params.year}, {}, loadPosts(context, done))
+	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	},
 	cat: function(context, payload, done) {
 		context.service.read('post', {cat: payload.params.cat}, {}, loadPosts(context, done))
+	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	}
 };

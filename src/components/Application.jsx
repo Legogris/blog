@@ -31,6 +31,7 @@ var Application = React.createClass({
         this.setState(this.getState());
     },
     render: function () {
+        console.log('Application.render')
         var output = '';
         switch (this.state.route.config.type) {
             case 'page':
@@ -50,6 +51,9 @@ var Application = React.createClass({
         );
     },
 
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return true;
+    },
     componentDidUpdate: function(prevProps, prevState) {
         console.log('app.componentDidUpdate');
         var newState = this.state;
