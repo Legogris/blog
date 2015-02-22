@@ -1,14 +1,20 @@
 var routes = require('./routes');
 
 module.exports = {
-	topmenu: {
-	    cat: {
+	topmenu: [
+	    {
 	        path: '/food',
-	        title: 'Food',
-	        method: 'get',
-	        type: 'page',
-	    }
-	},
+	        title: 'Food'
+	    },
+	    {
+	        path: '/tech',
+	        title: 'Tech'
+	    },
+	    {
+	        path: '/banter',
+	        title: 'Banter'
+	    },
+	],
 	sidebar: {
 		home: routes['home'],
 		about: routes['about']
