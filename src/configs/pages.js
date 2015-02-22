@@ -7,12 +7,12 @@ module.exports = {
 	        title: 'Food'
 	    },
 	    {
-	        path: '/tech',
-	        title: 'Tech'
+	        path: '/hacking',
+	        title: 'Hacking'
 	    },
 	    {
-	        path: '/banter',
-	        title: 'Banter'
+	        path: '/sundry',
+	        title: 'Sundry'
 	    },
 	],
 	sidebar: {

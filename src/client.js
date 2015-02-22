@@ -11,6 +11,7 @@ var dehydratedState = window.App; // Sent from the server
 window.React = React; // For chrome dev tool support
 
 require('./style/blog.less');
+require('./style/skin.less');
 // expose debug object to browser, so that it can be enabled/disabled from browser:
 // https://github.com/visionmedia/debug#browser-support
 window.fluxibleDebug = debug;

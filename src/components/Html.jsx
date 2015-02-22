@@ -14,9 +14,8 @@ var Html = React.createClass({
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" />
             </head>
 
-            <body>
+            <body className="pure-skin-purple">
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
-                <input type="text" />
             </body>
             <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
             <script src="/public/js/vendors.js"></script>
