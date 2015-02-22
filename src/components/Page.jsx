@@ -3,12 +3,13 @@ var React = require('react');
 
 var Page = React.createClass({
     render: function() {
-        return (<div>
-            <h1>{this.props.title}</h1>
-	            <div>
+        return (
+        	<div className="block">
+	            <h1>{this.props.title}</h1>
+	            <div className="block-content">
 		            {this.props.children}
 	            </div>
-                </div>
+            </div>
 	        );
 	    }
 	});

@@ -5,6 +5,7 @@ var debug = require('debug')('postservice');
 var pages = {
 	hej: {date: Date.now(), title: 'derp', content: ':D'},
 	hopp: {
+		date: Date.now(),
 		title: 'EN TILL BLAWG',
 		content: 'BLOGGELIblogg'
 	}
