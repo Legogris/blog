@@ -75,9 +75,11 @@ console.log('Listening on port ' + port);
 
 
 if(server.get('env') === 'development') {
-    require('http').request({
-        host: 'localhost',
-        port: 35729,
-        path: '/changed?files=/'
-    }).end()
+    try {
+        var req = require('http').request({
+            host: 'localhost',
+            port: 35729,
+            path: '/changed?files=/'
+        }).on('error', function() {}).end()
+    } catch(e) {}
 }
