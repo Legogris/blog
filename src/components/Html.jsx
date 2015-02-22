@@ -16,6 +16,7 @@ var Html = React.createClass({
 
             <body>
                 <div id="app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
+                <input type="text" />
             </body>
             <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
             <script src="/public/js/vendors.js"></script>

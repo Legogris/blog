@@ -27,13 +27,13 @@ var Nav = React.createClass({
 
             return (
                 <li className={className} key={link.path}>
-                    <NavLink routeName={link.page} context={context}>{link.title}</NavLink>
+                    <NavLink routeName={link.page} context={context} href={link.path}>{link.title}</NavLink>
                 </li>
             );
         });
 
         return (
-            <ul className="pure-menu pure-menu-open pure-menu-horizontal">
+            <ul className={'pure-menu pure-menu-open pure-menu-'+this.props.alignment}>
                 {linkHTML}
             </ul>
         );

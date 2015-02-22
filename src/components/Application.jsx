@@ -2,6 +2,7 @@
 var React = require('react');
 var Nav = require('./Nav.jsx');
 var PageList = require('./PageList.jsx');
+var Sidebar = require('./Sidebar.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouterMixin = require('flux-router-component').RouterMixin;
 var StoreMixin = require('fluxible').StoreMixin;
@@ -41,11 +42,11 @@ var Application = React.createClass({
         return (
             <div id="layout" className="pure-g">
                 <div className="pure-u-1 pure-u-md-3-4">
-                    <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
+                    <Nav alignment="horizontal" selected={this.state.currentPage} links={this.state.pages.topmenu} context={this.props.context}/>
                     {output}
                 </div>
                 <div id="sidebar" className="pure-u-1 pure-u-md-1-4">
-                    <Nav selected={this.state.currentPage} links={this.state.pages} context={this.props.context}/>
+                    <Sidebar context={this.props.context} links={this.state.pages.sidebar} currentPage={this.state.currentPage}/>
                 </div>
             </div>
         );
