@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "grunt livereload concurrent:dev",
-    "deploy": "webpack:dev",
+    "deploy": "grunt webpack:prod",
     "lint": "grunt jshint"
   },
   "dependencies": {
@@ -47,7 +47,6 @@
     "precommit-hook": "^1.0.7",
     "style-loader": "^0.8.3",
     "tiny-lr": "^0.1.5",
-    "webpack": "git://github.com/webpack/webpack.git#harmony",
-    "webpack-dev-server": "^1.6.5"
+    "webpack": "git://github.com/webpack/webpack.git#harmony"
   }
 }

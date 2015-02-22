@@ -32,12 +32,20 @@ var config = {
     webpack: {
         options: webpackConf,
         prod: {
-            path: './dist/js'
+            output: {
+                path: './dist/js',
+            },
+            plugins: []
+
         },
         dev: {
             output: {
-                path: './build/js'
-            }
+                path: './build/js',
+                pathInfo: true
+            },
+            devtool: 'sourcemap',
+            watch: true,
+            keepalive: true,
         }
     }
 };

@@ -25,7 +25,7 @@ conf = {
         new ExtractTextPlugin('../css/style.css', { allChunks: true })
     ],
     output: {
-        path: './build/js'
+        path: './build/js',
         publicPath: '/public/js/',
         filename: '[name].js'
     },
@@ -41,9 +41,6 @@ conf = {
     stats: {
         colors: true
     },
-    devtool: 'sourcemap',
-    watch: true,
-    keepalive: true
 };
 
 conf.addVendor('react', bower_dir + '/react/react.min.js');
