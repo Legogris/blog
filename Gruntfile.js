@@ -32,7 +32,7 @@ var config = {
         app: {
             script: './server.js',
             options: {
-                ignore: ['build/**'],
+                ignore: ['build/js/**'],
                 nodeArgs: ['--harmony'],
                 ext: 'js,jsx'
             }
