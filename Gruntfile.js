@@ -1,5 +1,6 @@
 'use strict';
 
+var webpack = require('webpack');
 var webpackConf = require('./webpack.config.js');
 
 var config = {
@@ -35,8 +36,9 @@ var config = {
             output: {
                 path: './dist/js',
             },
-            plugins: []
-
+            plugins: [
+                new webpack.optimize.UglifyJsPlugin({minimize: true})
+            ]
         },
         dev: {
             output: {
