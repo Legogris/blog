@@ -17,6 +17,8 @@ module.exports = {
 			data = [pages[params.slug]];
 		} else if(typeof params.year !== 'undefined') {
 			data = [pages.hej, pages.hopp];
+		} else if(typeof params.cat !== 'undefined') {
+			data = [pages.hej, pages.hopp];
 		}
 		console.log('FETCH DATA', resource, params, config);
 		debug(data);
