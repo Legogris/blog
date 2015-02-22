@@ -25,6 +25,8 @@
   },
   "devDependencies": {
     "bundle-loader": "~0.5.0",
+    "css-loader": "^0.9.1",
+    "extract-text-webpack-plugin": "^0.3.8",
     "grunt": "~0.4.5",
     "grunt-cli": "~0.1.13",
     "grunt-concurrent": "~1.0.0",
@@ -37,9 +39,12 @@
     "jshint": "^2.5.11",
     "json-loader": "~0.5.1",
     "jsx-loader": "~0.12.0",
+    "less": "^2.4.0",
+    "less-loader": "^2.0.0",
     "nodemon": "^1.2.1",
     "object.assign": "^1.1.1",
     "precommit-hook": "^1.0.7",
+    "style-loader": "^0.8.3",
     "tiny-lr": "^0.1.5",
     "webpack": "git://github.com/webpack/webpack.git#harmony",
     "webpack-dev-server": "^1.6.5"

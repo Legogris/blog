@@ -2,6 +2,7 @@
 
 var bower_dir = __dirname + '/bower_components';
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function addVendor(name, path) {
     var c = config.webpack.dev;
@@ -49,7 +50,8 @@ var config = {
                 vendors: []
             },
             plugins: [
-                new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+                new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+                new ExtractTextPlugin('../css/style.css', { allChunks: true })
             ],
             output: {
                 path: './build/js',
@@ -59,7 +61,8 @@ var config = {
             module: {
                 noParse: [bower_dir + '/react/react.min.js'],
                 loaders: [
-                    { test: /\.css$/, loader: 'style!css' },
+                    { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
+                    { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
                     { test: /\.jsx$/, loader: 'jsx-loader' },
                     { test: /\.json$/, loader: 'json-loader'}
                 ]

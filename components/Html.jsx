@@ -1,7 +1,6 @@
 'use strict';
 var React = require('react');
 var ApplicationStore = require('../stores/ApplicationStore');
-
 var Html = React.createClass({
     render: function() {
         return (
@@ -11,6 +10,7 @@ var Html = React.createClass({
                 <title>{this.props.context.getStore(ApplicationStore).getPageTitle()}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />
+                <link rel="stylesheet" href="/public/css/style.css" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" />
             </head>
 
