@@ -17,7 +17,7 @@ conf = {
         }
     },
     entry: {
-        app: './client.js',
+        app: './src/client.js',
         vendors: []
     },
     plugins: [

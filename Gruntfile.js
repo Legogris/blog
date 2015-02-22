@@ -22,7 +22,7 @@ var config = {
     },
     nodemon: {
         app: {
-            script: './server.js',
+            script: './src/server.js',
             options: {
                 ignore: ['build/js/**'],
                 nodeArgs: ['--harmony'],

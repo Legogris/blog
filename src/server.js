@@ -26,7 +26,7 @@ var htmlComponent = React.createFactory(require('./components/Html.jsx'));
 
 var server = express();
 server.set('state namespace', 'App');
-server.use('/public', express.static(__dirname + '/build'));
+server.use('/public', express.static(__dirname + '/../build'));
 
 //SERVICES
 fetchr.registerService(require('./services/PageService.js'));
