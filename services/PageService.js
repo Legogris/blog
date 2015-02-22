@@ -1,3 +1,7 @@
+'use strict';
+
+var debug = require('debug')('pageservice');
+
 var pages = {
 	home: {
 		title: 'Hemsidan',
@@ -11,9 +15,9 @@ var pages = {
 module.exports = {
 	name: 'page',
 	read: function(req, resource, params, config, cb) {
-
 		var data = pages[params.id];
 		console.log('FETCH DATA', resource, params, config);
+		debug(data);
 		cb(null, data);
 	}
 };

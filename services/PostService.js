@@ -1,3 +1,7 @@
+'use strict';
+
+var debug = require('debug')('postservice');
+
 var pages = {
 	hej: {date: Date.now(), title: 'derp', content: ':D'},
 	hopp: {
@@ -14,7 +18,8 @@ module.exports = {
 		} else if(typeof params.year !== 'undefined') {
 			data = [pages.hej, pages.hopp];
 		}
-		console.log('FETCH DATA', resource, params, config, data);
+		console.log('FETCH DATA', resource, params, config);
+		debug(data);
 		cb(null, data);
 	}
 };

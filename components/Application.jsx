@@ -5,6 +5,7 @@ var PageList = require('./PageList.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouterMixin = require('flux-router-component').RouterMixin;
 var StoreMixin = require('fluxible').StoreMixin;
+var debug = require('debug')('application');
 
 var Application = React.createClass({
     propTypes: {
@@ -31,7 +32,7 @@ var Application = React.createClass({
     },
     render: function () {
         var output = '';
-        console.log(this.state.route);
+        debug(this.state.route);
         switch (this.state.route.config.type) {
             case 'page':
                 output = <PageList context={this.props.context} />;

@@ -4,6 +4,7 @@ var PageStore = require('../stores/PageStore');
 var Page = require('./Page.jsx');
 var Post = require('./Post.jsx');
 var StoreMixin = require('fluxible').StoreMixin;
+var debug = require('debug')('pagelist');
 
 var PageList = React.createClass({
     mixins: [StoreMixin],
@@ -15,12 +16,14 @@ var PageList = React.createClass({
         return pageStore.getState();
     },
     onChange: function() {
-        console.log('pageList onChange', state);
+        console.log('pageList onChange');
+        debug(state);
         var state = this.getStore(PageStore).getState();
         this.setState(state);
     },
     render: function() {
-        console.log('PageList.render', this.state.pages)
+        console.log('PageList.render');
+        debug(this.state.pages);
         var i=0;
         var pagesHTML = this.state.pages.map(function(page) {
             switch(page.type) {
@@ -31,7 +34,7 @@ var PageList = React.createClass({
                     return (<Page key={i++} title={page.title}>{page.content}</Page>);
             }
         });
-        console.log(pagesHTML);
+        debug(pagesHTML);
         return <div>{pagesHTML}</div>;
     }
 });
