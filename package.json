@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "grunt livereload concurrent:dev",
+    "deploy": "webpack:dev",
     "lint": "grunt jshint"
   },
   "dependencies": {

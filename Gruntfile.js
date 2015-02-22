@@ -1,15 +1,6 @@
 'use strict';
 
-var bower_dir = __dirname + '/bower_components';
-var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-function addVendor(name, path) {
-    var c = config.webpack.dev;
-    c.resolve.alias[name] = path;
-    c.module.noParse.push(new RegExp('^'+path));
-    c.entry.vendors.push(name);
-}
+var webpackConf = require('./webpack.config.js');
 
 var config = {
     clean: ['build'],
@@ -39,45 +30,18 @@ var config = {
         }
     },
     webpack: {
+        options: webpackConf,
+        prod: {
+            path: './dist/js'
+        },
         dev: {
-            resolve: {
-                extensions: ['', '.js', '.jsx'],
-                alias: {
-                }
-            },
-            entry: {
-                app: './client.js',
-                vendors: []
-            },
-            plugins: [
-                new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-                new ExtractTextPlugin('../css/style.css', { allChunks: true })
-            ],
             output: {
-                path: './build/js',
-                publicPath: '/public/js/',
-                filename: '[name].js'
-            },
-            module: {
-                noParse: [bower_dir + '/react/react.min.js'],
-                loaders: [
-                    { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-                    { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
-                    { test: /\.jsx$/, loader: 'jsx-loader' },
-                    { test: /\.json$/, loader: 'json-loader'}
-                ]
-            },
-            stats: {
-                colors: true
-            },
-            devtool: 'sourcemap',
-            watch: true,
-            keepalive: true
+                path: './build/js'
+            }
         }
     }
 };
 
-addVendor('react', bower_dir + '/react/react.min.js');
 
 module.exports = function (grunt) {
     grunt.initConfig(config);
