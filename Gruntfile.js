@@ -67,9 +67,6 @@ var config = {
 };
 
 addVendor('react', bower_dir + '/react/react.min.js');
-addVendor('fluxible', bower_dir + '/fluxible/');
-
-
 
 module.exports = function (grunt) {
     grunt.initConfig(config);
