@@ -1,3 +1,4 @@
+var debug = require('debug')('pagestore');
 
 /**
  * Copyright 2014, Yahoo! Inc.
@@ -16,8 +17,7 @@ var PageStore = createStore({
         'LOAD_POSTS': 'handleLoadPosts'
     },
     handleLoadPosts: function (payload) {
-        var x = Object.assign({}, {})
-        console.log(payload);
+        debug(payload);
         this.pages = payload.posts.map((post) => Object.assign(post, {type: 'post'}));
         this.emitChange();
     },
