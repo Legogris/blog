@@ -34,9 +34,9 @@ conf = {
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
             { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
-            { test: /\.jsx$/, loader: 'babel-loader!jsx-loader', exclude: [/node_modules/, /bower_components/]},
-            { test: /\.json$/, loader: 'babel-loader!json-loader'},
-            { test: /\.js$/, loader: 'babel-loader', exclude: [/node_modules/, /bower_components/]}
+            { test: /\.jsx$/, loader: 'babel-loader?optional=runtime!jsx-loader', exclude: [/node_modules/, /bower_components/]},
+            { test: /\.json$/, loader: 'babel-loader?optional=runtime!json-loader', exclude: [/node_modules/, /bower_components/]},
+            { test: /\.js$/, loader: 'babel-loader?optional=runtime', exclude: [/node_modules/, /bower_components/]}
         ]
     },
     stats: {
