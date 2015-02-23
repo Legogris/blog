@@ -3,9 +3,14 @@ Post: {
 	content
 	date
 	terms
-	
+	public
+	slug
+	type
+	terms: []
 }
 Term: {
-	type: cat/tag,
-
+	title
+	slug
+	description
+	theme
 }
