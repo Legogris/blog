@@ -25,9 +25,14 @@ var htmlComponent = React.createFactory(require('./components/Html.jsx'));
 
 
 var server = express();
+var staticPath = {
+    development: 'build',
+    production: 'dist'
+}[server.get('env')];
+
 server.set('state namespace', 'App');
-server.use('/js', express.static(__dirname + '/../build/js'));
-server.use('/css', express.static(__dirname + '/../build/css'));
+server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
+server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
 
 //SERVICES
 fetchr.registerService(require('./services/PageService.js'));
