@@ -37,6 +37,9 @@ var Application = React.createClass({
             case 'page':
                 output = <PageList context={this.props.context} />;
                 break;
+            case 'admin':
+                output = 'ADMIN AREA';
+                break;
         }
         return (
             <div id="layout" className="pure-g">

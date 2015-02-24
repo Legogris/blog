@@ -24,6 +24,16 @@ var fetchr = app.getPlugin('FetchrPlugin');
 var htmlComponent = React.createFactory(require('./components/Html.jsx'));
 
 
+//Database
+const mongoose = require('mongoose');
+mongoose.connect('mongo', 'blog');
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', () => {
+    console.log('Connected to db')
+});
+
 var server = express();
 var staticPath = {
     development: 'build',

@@ -15,6 +15,11 @@ var loadPosts = function(context, done) {
 
 module.exports = {
 	static: function(context, payload, done) {
+		//TODO: Check admin
+		context.dispatch('UPDATE_PAGE_TITLE', 'Edit')
+		done();
+	},
+	page: function(context, payload, done) {
 		context.service.read('page', {id: payload.config.page}, {}, function(err, page) {
 			if (err || !page) {
 				console.log('errorskates', err);

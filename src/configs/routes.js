@@ -9,7 +9,7 @@ module.exports = {
         page: 'home',
         type: 'page',
         title: 'Home',
-        action: loadPage.static
+        action: loadPage.page
     },
     about: {
         path: '/about',
@@ -17,7 +17,7 @@ module.exports = {
         method: 'get',
         page: 'about',
         title: 'About',
-        action: loadPage.static
+        action: loadPage.page
     },
     post: {
         path: '/:cat/:year(\\d{4})/:slug',
@@ -36,5 +36,14 @@ module.exports = {
         method: 'get',
         type: 'page',
         action: loadPage.cat
+    },
+
+    //admin pages
+    edit: {
+        path: '/edit/:post',
+        type: 'admin',
+        method: 'get',
+        admin: true,
+        action: loadPage.static
     }
 };
