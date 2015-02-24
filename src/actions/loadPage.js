@@ -39,7 +39,7 @@ module.exports = {
 	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	},
 	cat: function(context, payload, done) {
-		context.service.read('post', {cat: payload.params.cat}, {}, loadPosts(context, done))
+		context.service.read('post', {cat: payload.params.cat }, {}, loadPosts(context, done))
 	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	}
 };
