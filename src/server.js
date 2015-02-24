@@ -49,7 +49,7 @@ server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
 server.use(cookieParser());
 server.use(bodyParser.json());
-server.use(csrf({cookie: true}));
+//server.use(csrf({cookie: true}));
 
 //SERVICES
 fetchr.registerService(require('./services/PageService'));
@@ -60,7 +60,7 @@ server.use(function (req, res, next) {
     let context = app.createContext({
         req: req,
         xhrContext: {
-            _csrf: req.csrfToken()
+        //    _csrf: req.csrfToken()
         }
     });
 
