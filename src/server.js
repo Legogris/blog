@@ -13,15 +13,19 @@ require('node-jsx').install({ extension: '.jsx' });
 //ES6 Shims
 require('object.assign').shim();
 
-var express = require('express');
-var serialize = require('serialize-javascript');
-var navigateAction = require('flux-router-component').navigateAction;
-var debug = require('debug')('blog');
-var React = require('react');
+const express = require('express');
+const serialize = require('serialize-javascript');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
+const React = require('react');
+const navigateAction = require('flux-router-component').navigateAction;
+const debug = require('debug')('blog');
 
-var app = require('./app');
-var fetchr = app.getPlugin('FetchrPlugin');
-var htmlComponent = React.createFactory(require('./components/Html.jsx'));
+
+const app = require('./app');
+const fetchr = app.getPlugin('FetchrPlugin');
+const htmlComponent = React.createFactory(require('./components/Html.jsx'));
 
 
 //Database
@@ -34,8 +38,8 @@ db.once('open', () => {
     console.log('Connected to db')
 });
 
-var server = express();
-var staticPath = {
+const server = express();
+const staticPath = {
     development: 'build',
     production: 'dist'
 }[server.get('env')];
@@ -43,15 +47,21 @@ var staticPath = {
 server.set('state namespace', 'App');
 server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
+server.use(cookieParser());
+server.use(bodyParser.json());
+server.use(csrf({cookie: true}));
 
 //SERVICES
-fetchr.registerService(require('./services/PageService.js'));
-fetchr.registerService(require('./services/PostService.js'));
+fetchr.registerService(require('./services/PageService'));
+fetchr.registerService(require('./services/PostService'));
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
 server.use(function (req, res, next) {
-    var context = app.createContext({
-        req: req
+    let context = app.createContext({
+        req: req,
+        xhrContext: {
+            _csrf: req.csrfToken()
+        }
     });
 
     debug('Executing navigate action');
@@ -69,20 +79,18 @@ server.use(function (req, res, next) {
 
         debug('Exposing context state');
         var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';';
-        //console.log(exposed);
         debug('Rendering Application component into html');
         var appComponent = app.getAppComponent();
-        var html = React.renderToStaticMarkup(htmlComponent({
-            state: exposed,
-            context: context.getComponentContext(),
-            markup: React.renderToString(appComponent({
-                context: context.getComponentContext()
-            }))
-        }));
+        React.withContext(context.getComponentContext(), () => {
+            let html = React.renderToStaticMarkup(htmlComponent({
+                state: exposed,
+                markup: React.renderToString(appComponent())
+            }));
 
-        debug('Sending markup');
-        res.write('<!DOCTYPE html>' + html);
-        res.end();
+            debug('Sending markup');
+            res.write('<!DOCTYPE html>' + html);
+            res.end();
+        });
     });
 });
 

@@ -26,11 +26,10 @@ app.rehydrate(dehydratedState, function (err, context) {
     var mountNode = document.getElementById('app');
 
     debugClient('React Rendering');
-    React.render(app.getAppComponent()({
-        context: context.getComponentContext()
-        //to disable auto-scrolling: enableScroll: false
-    }), mountNode, function () {
-        debugClient('React Rendered');
+    React.withContext(context.getComponentContext(), () => {
+        React.render(app.getAppComponent()(), mountNode, () => {
+            debugClient('React Rendered');
+        });
     });
 });
 

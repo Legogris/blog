@@ -40,6 +40,7 @@ module.exports = {
 		cb(null, data);
 	},
 	create: function(req, resource, params, body, config, cb) {
+		console.log('HAJJ');
 		Post.create({terms: ['food'], slug: 'hello', title: 'Hello Mongoose', content: 'ERMAHGERDD'}, (err, post) => {
 			if(err) {
 				console.log('create error', err);

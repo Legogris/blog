@@ -3,10 +3,6 @@ var React = require('react');
 var NavLink = require('flux-router-component').NavLink;
 
 var Nav = React.createClass({
-    propTypes: {
-        context: React.PropTypes.object.isRequired
-    },
-
     getDefaultProps: function () {
         return {
             selected: 'home',
@@ -16,7 +12,6 @@ var Nav = React.createClass({
     render: function() {
         var selected = this.props.selected;
         var links = this.props.links;
-        var context = this.props.context;
 
         var linkHTML = Object.keys(links).map((name) => {
             var className = '';
@@ -27,7 +22,7 @@ var Nav = React.createClass({
 
             return (
                 <li className={className} key={link.path}>
-                    <NavLink routeName={link.page} context={context} href={link.path}>{link.title}</NavLink>
+                    <NavLink routeName={link.page} href={link.path}>{link.title}</NavLink>
                 </li>
             );
         });

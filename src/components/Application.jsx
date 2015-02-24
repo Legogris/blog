@@ -2,17 +2,15 @@
 var React = require('react');
 var Nav = require('./Nav.jsx');
 var PageList = require('./PageList.jsx');
+var Editor = require('./Editor.jsx');
 var Sidebar = require('./Sidebar.jsx');
 var ApplicationStore = require('../stores/ApplicationStore');
 var RouterMixin = require('flux-router-component').RouterMixin;
-var StoreMixin = require('fluxible').StoreMixin;
+var FluxibleMixin = require('fluxible').FluxibleMixin;
 var debug = require('debug')('application');
 
 var Application = React.createClass({
-    propTypes: {
-        context: React.PropTypes.object.isRequired
-    },
-    mixins: [RouterMixin, StoreMixin],
+    mixins: [FluxibleMixin, RouterMixin],
     statics: {
         storeListeners: [ApplicationStore]
     },
@@ -20,7 +18,7 @@ var Application = React.createClass({
         return this.getState();
     },
     getState: function () {
-        var appStore = this.getStore(ApplicationStore);
+        let appStore = this.getStore(ApplicationStore);
         return {
             pageTitle: appStore.getPageTitle(),
             route: appStore.getCurrentRoute(),
@@ -31,28 +29,27 @@ var Application = React.createClass({
         this.setState(this.getState());
     },
     render: function () {
-        console.log('Application.render')
         var output = '';
         switch (this.state.route.config.type) {
             case 'page':
-                output = <PageList context={this.props.context} />;
+                output = <PageList />;
                 break;
             case 'admin':
-                output = 'ADMIN AREA';
+                output = <Editor />;
                 break;
         }
         return (
             <div id="layout" className="pure-g">
                 <div className="pure-u-1 pure-u-md-3-4">
                     <div id="header">
-                        <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} context={this.props.context}/>
+                        <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} />
                     </div>
                     <div className="content">
                         {output}
                     </div>
                 </div>
                 <div id="sidebar" className="pure-u-1 pure-u-md-1-4">
-                    <Sidebar context={this.props.context} links={this.state.pages.sidebar} currentRoute={this.state.route}/>
+                    <Sidebar links={this.state.pages.sidebar} currentRoute={this.state.route}/>
                 </div>
             </div>
         );

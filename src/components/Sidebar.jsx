@@ -13,7 +13,7 @@ var Sidebar = React.createClass({
 	        	Me? Swedish guy currently living in Japan.
 	        	</p>
         	</div>
-        	<Nav alignment="vertical" selected={this.props.currentRoute} links={this.props.links} context={this.props.context}/>
+        	<Nav alignment="vertical" selected={this.props.currentRoute} links={this.props.links} />
         </div>);
     }
 });
