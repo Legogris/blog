@@ -41,11 +41,13 @@ var Application = React.createClass({
         return (
             <div id="layout" className="pure-g">
                 <div id="main" className="pure-u-1 pure-u-md-3-4">
-                    <div id="header">
-                        <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} />
-                    </div>
-                    <div className="content">
-                        {output}
+                    <div id="main-wrapper">
+                        <div id="header">
+                            <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} />
+                        </div>
+                        <div className="content">
+                            {output}
+                        </div>
                     </div>
                 </div>
                 <div id="sidebar" className="pure-u-1 pure-u-md-1-4">

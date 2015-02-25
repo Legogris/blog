@@ -1,5 +1,7 @@
 @body-bg:	#f7f3ee;
 @content-bg: #fafafa;
+@border-color: #bbb;
+
 
 body, html, #app , #main{
 	height: 100%;
@@ -10,6 +12,12 @@ body, html, #app , #main{
 }
 #main {
 	min-height: 100vh;
+	margin-left: 1em;
+}
+#main-wrapper {
+	max-width: 50em;
+	margin-left: auto;
+	margin-right: auto;
 }
 #header {
 	margin-left: 0.1em;
@@ -39,16 +47,12 @@ body, html, #app , #main{
 	}
 }
 #layout {
-	margin-left: 1em;
 }
 .content {
 	background: @content-bg;
 	border-radius: 0.2em;
-	border: 1px solid #bbb;
-	margin-left: auto;
-	margin-right: auto;
+	border: 1px solid @border-color;
 	padding-left: 1em;
-	max-width: 50em;
 	min-height: 10em;
 	h1, h2, h3, h4 {
 		color: #222;
@@ -72,7 +76,8 @@ body, html, #app , #main{
 	}
 }
 #sidebar {
-	background: @body-bg;
+	background: @content-bg;
+	border-left: 1px solid @border-color;
 	position: fixed;
 	top: 0;
 	height: 100%;
