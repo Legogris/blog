@@ -33,7 +33,7 @@ module.exports = {
 			}
 			if(posts) {
 				console.log('GOT IT')
-				cb(null, posts);
+				cb(null, posts.map(post => post.toObject()));
 			}
 		});
 	},
