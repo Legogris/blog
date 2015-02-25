@@ -16,7 +16,5 @@ module.exports = {
 	    },
 	],
 	sidebar: {
-		home: routes['home'],
-		about: routes['about']
 	}
 };
