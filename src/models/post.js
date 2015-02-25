@@ -10,7 +10,10 @@ const postSchema = mongoose.Schema({
 		type: Boolean,
 		default: true
 	},
-	slug: String,
+	slug: {
+		type: String,
+		unique: true
+	},
 	type: {
 		type: String,
 		enum: { values: ['page', 'post'] },
@@ -25,7 +28,7 @@ postSchema.set('toObject', {
     	return ret;
 	}
 });
-postSchema.virtual('url').get(() => this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
+postSchema.virtual('url').get(() => '/' + this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
 
 const Post = mongoose.model('Post', postSchema);
 
