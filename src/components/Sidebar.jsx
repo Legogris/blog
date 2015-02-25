@@ -12,6 +12,7 @@ var Sidebar = React.createClass({
 	        	</p><p>
 	        	Me? Swedish guy currently living in Japan.
 	        	</p>
+                <iframe src="/static/twitter.html"  className="twitter" frameborder="0" scrolling="no" allowtransparency="true"/>
         	</div>
         	<Nav alignment="vertical" selected={this.props.currentRoute} links={this.props.links} />
         </div>);

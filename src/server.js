@@ -47,6 +47,7 @@ const staticPath = {
 server.set('state namespace', 'App');
 server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
+server.use('/static', express.static(__dirname + '/../'+staticPath+'/static'));
 server.use(cookieParser());
 server.use(bodyParser.json());
 //server.use(csrf({cookie: true}));

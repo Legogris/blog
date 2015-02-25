@@ -36,7 +36,8 @@ conf = {
             { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
             { test: /\.jsx$/, loader: 'babel-loader?optional=runtime!jsx-loader', exclude: [/node_modules/, /bower_components/]},
             { test: /\.json$/, loader: 'babel-loader?optional=runtime!json-loader', exclude: [/node_modules/, /bower_components/]},
-            { test: /\.js$/, loader: 'babel-loader?optional=runtime', exclude: [/node_modules/, /bower_components/]}
+            { test: /\.js$/, loader: 'babel-loader?optional=runtime', exclude: [/node_modules/, /bower_components/]},
+            { test: /\.html$/, loader: 'file?name=../static/[name].[ext]'}
         ]
     },
     stats: {
