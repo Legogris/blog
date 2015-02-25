@@ -1,28 +1,52 @@
+@body-bg:	#cacaca;
+@content-bg: #fafafa;
+
 body, html, #app , #main{
 	height: 100%;
-	background: #663399;
+	background: @body-bg;
 }
 #app {
 	color: #555;
 }
 #main {
-	background: #fafafa;
-	margin-left: 1em;
 	min-height: 100vh;
 }
 #header {
+	margin-left: 0.1em;
 	ul {
+		border-top-left-radius: 1em;
+		border-top-right-radius: 1em;
 		margin: 0;
 		padding: 0;
+		background: @body-bg;
+		li.pure-menu-selected{
+			a {
+				background: #663399;
+			}
+		}
+		li {
+			a {
+				background: #555;
+				border-top-left-radius: 1em;
+				border-top-right-radius: 1em;
+			}
+			a:hover {
+				background: #000;
+			}
+		}
 	}
 }
 #layout {
 	margin-left: 1em;
 }
 .content {
+	background: @content-bg;
+	border-radius: 0.2em;
 	margin-left: auto;
 	margin-right: auto;
+	padding-left: 1em;
 	max-width: 50em;
+	min-height: 10em;
 	h1, h2, h3, h4 {
 		color: #222;
 	}
@@ -31,9 +55,8 @@ body, html, #app , #main{
 	}
 	.date {
 		font-size: 1em;
-		color: #ccc;
+		color: #aaa;
 		font-style: Georgia, serif;
-		font-style: italic;
 		margin-bottom: 1em;
 	}
 
@@ -46,11 +69,11 @@ body, html, #app , #main{
 	}
 }
 #sidebar {
-	background: #663399;
+	background: @body-bg;
 	position: fixed;
 	top: 0;
 	height: 100%;
-	color: #ccc;
+	color: #222;
 	.egobox {
 		margin: 1em;
 	}
