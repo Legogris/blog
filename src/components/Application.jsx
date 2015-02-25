@@ -40,7 +40,7 @@ var Application = React.createClass({
         }
         return (
             <div id="layout" className="pure-g">
-                <div className="pure-u-1 pure-u-md-3-4">
+                <div id="main" className="pure-u-1 pure-u-md-3-4">
                     <div id="header">
                         <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} />
                     </div>
