@@ -5,7 +5,7 @@ const ApplicationStore = require('../stores/ApplicationStore');
 const Html = React.createClass({
     mixins: [FluxibleMixin],
     render: function() {
-        return (
+        let result = (
             <html>
             <head>
                 <meta charSet="utf-8" />
@@ -22,9 +22,9 @@ const Html = React.createClass({
             <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
             <script src="/js/vendors.js"></script>
             <script src="/js/app.js"></script>
-            <script src="//localhost:35729/livereload.js"></script>
             </html>
         );
+        return result;
     }
 });
 

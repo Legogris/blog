@@ -82,13 +82,17 @@ server.use(function (req, res, next) {
         debug('Rendering Application component into html');
         var appComponent = app.getAppComponent();
         React.withContext(context.getComponentContext(), () => {
-            let html = React.renderToStaticMarkup(htmlComponent({
+            let html = htmlComponent({
                 state: exposed,
                 markup: React.renderToString(appComponent())
-            }));
+            });
+            let markup = React.renderToStaticMarkup(html);
 
+            if(server.get('env') === 'development') {
+                markup = markup.replace('</html>', '<script src="//localhost:35729/livereload.js"></script></html>');
+            }
             debug('Sending markup');
-            res.write('<!DOCTYPE html>' + html);
+            res.write('<!DOCTYPE html>' + markup);
             res.end();
         });
     });
