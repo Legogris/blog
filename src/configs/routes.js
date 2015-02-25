@@ -3,6 +3,22 @@
 var loadPage = require('../actions/loadPage');
 
 module.exports = {
+    //admin pages
+    edit: {
+        path: '/:cat/:year(\\d{4})/:slug/edit',
+        type: 'admin',
+        method: 'get',
+        admin: true,
+        action: loadPage.static
+    },
+    create: {
+        path: '/edit',
+        type: 'admin',
+        method: 'get',
+        admin: true,
+        create: true,
+        action: loadPage.static
+    },
     home: {
         path: '/',
         method: 'get',
@@ -38,12 +54,4 @@ module.exports = {
         action: loadPage.cat
     },
 
-    //admin pages
-    edit: {
-        path: '/edit/:post',
-        type: 'admin',
-        method: 'get',
-        admin: true,
-        action: loadPage.static
-    }
 };

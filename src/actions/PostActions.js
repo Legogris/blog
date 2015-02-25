@@ -2,7 +2,7 @@
 
 const PostActions = {
 	publish: function(context, payload, done) {
-		context.service.create('post', {title:'bajs'}, {}, function(err, post) {
+		context.service.create('post', payload, {}, function(err, post) {
 			if(err) {
 				console.log('Error in PostActions.publish: ', err)
 			}

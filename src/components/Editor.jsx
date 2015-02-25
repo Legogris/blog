@@ -9,9 +9,14 @@ const Editor = React.createClass({
     mixins: [FluxibleMixin],
     render: function() {
     	let post = this.state.post;
-        return (<div>
-        	<input type="text" value={post.title} onChange={this.handleTitleChange}/><br />
-        	<button onClick={this.handleSave}>Publish</button>
+        return (
+            <div>
+            	Terms: <input type="text" value={post.terms.length == 0 ? '' : post.terms.reduce((x,y) => x + ' ' + y)} onChange={this.handleTermsChange}/><br />
+                Title: <input type="text" value={post.title} onChange={this.handleTextChange('title')}/><br />
+                Category: <input type="text" value={post.cat} onChange={this.handleTextChange('cat')}/><br />
+                Slug: <input type="text" value={post.slug} onChange={this.handleTextChange('slug')}/><br />
+                <textarea onChange={this.handleTextChange('content')} value={post.content}/><br />
+            	<button onClick={this.handleSave}>Publish</button>
         	</div>)
     },
     getInitialState: function() {
@@ -19,15 +24,26 @@ const Editor = React.createClass({
     },
     getState: function() {
     	let pageStore = this.getStore(PageStore);
+        let post = pageStore.getState().pages.length > 0
+                ? pageStore.getState().pages[0]
+                : {
+                    title: '',
+                    content: '',
+                    terms: []
+                };
     	return {
-    		post: pageStore.getState().length > 0
-    			? pageStore.getState()[0]
-    			: {title: '', content: ''}
+    		post: post
     	}
     },
-    handleTitleChange: function(e) {
-    	this.state.post.title = e.target.value;
-    	this.setState(this.state);
+    handleTextChange: function(field) {
+        return function(e) {
+        	this.state.post[field] = e.target.value;
+        	this.setState(this.state);
+        }.bind(this)
+    },
+    handleTermsChange: function(e) {
+        this.state.post.terms = e.target.value.split(' ');
+        this.setState(this.state);
     },
     handleSave: function(e) {
     	//Maybe let this be set externally? Oh well.

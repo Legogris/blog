@@ -8,7 +8,7 @@
  * and the application is rendered via React.
  */
 
-require('node-jsx').install({ extension: '.jsx' });
+require('node-jsx').install({ harmony: true, extension: '.jsx' });
 
 //ES6 Shims
 require('object.assign').shim();

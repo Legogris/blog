@@ -16,14 +16,11 @@ var pages = {
 module.exports = {
 	name: 'post',
 	read: function(req, resource, params, config, cb) {
-		let query = {terms: []};
+		let query = {};
 		Object.keys(params).forEach(key => {
-			if(key === 'cat') {
-				query.terms.push(params[key]);
-			} else {
-				query[key] = params[key];
-			}
+			query[key] = params[key];
 		});
+		console.log(query)
 		Post.where(query).find((err, posts) => {
 			if(err) {
 				console.log('ERROR');
@@ -37,8 +34,9 @@ module.exports = {
 			}
 		});
 	},
-	create: function(req, resource, params, body, config, cb) {
-		Post.create({terms: ['food'], slug: 'hello', title: 'Hello Mongoose', content: 'ERMAHGERDD'}, (err, post) => {
+	create: function(req, resource, post, body, config, cb) {
+		post.type = 'post';
+		let done = (err, post) => {
 			if(err) {
 				console.log('create error', err);
 				return;
@@ -46,6 +44,11 @@ module.exports = {
 			console.log('post created: ')
 			console.log(post);
 			cb(null, post);
-		})
+		}
+		if(typeof post._id === 'undefined') {
+			Post.create(post, done);
+		} else {
+			Post.update({_id: post.id}, post, done);
+		}
 	}
 };
