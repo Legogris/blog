@@ -4,12 +4,12 @@ var React = require('react');
 var Page = React.createClass({
     render: function() {
         return (
-        	<div className="block">
-	            <h1>{this.props.title}</h1>
+        	<article>
+	            <h1><a href={this.props.href}>{this.props.title}</a></h1>
 	            <div className="block-content">
 		            {this.props.children}
 	            </div>
-            </div>
+            </article>
 	        );
 	    }
 	});
