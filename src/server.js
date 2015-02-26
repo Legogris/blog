@@ -23,6 +23,7 @@ const navigateAction = require('flux-router-component').navigateAction;
 const debug = require('debug')('blog');
 
 
+const Feed = require('./feed.js');
 const app = require('./app');
 const fetchr = app.getPlugin('FetchrPlugin');
 const htmlComponent = React.createFactory(require('./components/Html.jsx'));
@@ -48,6 +49,16 @@ server.set('state namespace', 'App');
 server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
 server.use('/static', express.static(__dirname + '/../'+staticPath+'/static'));
+server.get('/feed/:cat', (req, res) => {
+    console.log(Feed.generate(req.params.cat, 20).then(feed => {
+        res.send(feed)
+        return feed;
+    }, err => {
+        console.error('FEED SERVER ERROR: ', err.stack)
+        res.send(err.message);
+        throw new Error(err);
+    }));
+});
 server.use(cookieParser());
 server.use(bodyParser.json());
 //server.use(csrf({cookie: true}));

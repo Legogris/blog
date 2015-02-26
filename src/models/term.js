@@ -9,3 +9,7 @@ const termSchema = mongoose.Schema({
 	description: String,
 	theme: String
 });
+
+const Term = mongoose.model('Term', termSchema);
+
+module.exports = Term;
