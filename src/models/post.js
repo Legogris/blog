@@ -28,7 +28,8 @@ postSchema.set('toObject', {
     	return ret;
 	}
 });
-postSchema.virtual('url').get(() => '/' + this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
+postSchema.virtual('uri').get(() => '/' + this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
+postSchema.virtual('absoluteURI').get(() => 'http://legogris.se/' + this.uri);
 
 const Post = mongoose.model('Post', postSchema);
 

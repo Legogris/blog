@@ -6,11 +6,17 @@ var Page = require('./Page.jsx')
 var Post = React.createClass({
     render: function() {
     	var post = this.props.post;
-        return (
-        	<Page title={post.title} href={post.url}>
+    	var page = Object.assign(post, {
+    		content: (
+    			<div>
 	        	<time>{post.date}</time>
 	        	<div dangerouslySetInnerHTML={{__html: marked(post.content)}}></div>
-        	</Page>)
+	        	</div>
+			)
+    	});
+        return (
+        	<Page page={page} />
+ 		);
     }
 });
 

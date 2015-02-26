@@ -31,7 +31,7 @@ var PageList = React.createClass({
                     return (<Post key={i++} post={page} />);
                     break;
                 default:
-                    return (<Page key={i++} title={page.title}>{page.content}</Page>);
+                    return (<Page page={page} key={i++} />);
             }
         });
         debug(pagesHTML);
