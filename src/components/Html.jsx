@@ -22,6 +22,7 @@ const Html = React.createClass({
             <script dangerouslySetInnerHTML={{__html: this.props.state}}></script>
             <script src="/js/vendors.js"></script>
             <script src="/js/app.js"></script>
+
             </html>
         );
         return result;
