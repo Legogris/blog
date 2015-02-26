@@ -21,18 +21,15 @@ module.exports = {
 			query[key] = params[key];
 		});
 		console.log(query)
-		Post.where(query).find((err, posts) => {
-			if(err) {
-				console.log('ERROR');
-				console.log(err);
-				cb(null, []);
-				return;
-			}
-			if(posts) {
-				console.log('GOT IT')
-				cb(null, posts.map(post => post.toObject()));
-			}
-		});
+		Post.find(query).exec().then(posts => {
+			let result = posts.map(post => post.toObject());
+			console.log('GOT IT')
+			cb(null, result);
+		}, err => {
+			console.log('ERROR');
+			console.log(err);
+			cb(null, []);
+		}).end();
 	},
 	create: function(req, resource, post, body, config, cb) {
 		post.type = 'post';
