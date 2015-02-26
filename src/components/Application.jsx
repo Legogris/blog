@@ -1,15 +1,15 @@
 'use strict';
-var React = require('react');
-var Nav = require('./Nav.jsx');
-var PageList = require('./PageList.jsx');
-var Editor = require('./Editor.jsx');
-var Sidebar = require('./Sidebar.jsx');
-var ApplicationStore = require('../stores/ApplicationStore');
-var RouterMixin = require('flux-router-component').RouterMixin;
-var FluxibleMixin = require('fluxible').FluxibleMixin;
-var debug = require('debug')('application');
+const React = require('react');
+const Nav = require('./Nav.jsx');
+const PageList = require('./PageList.jsx');
+const Editor = require('./Editor.jsx');
+const Sidebar = require('./Sidebar.jsx');
+const ApplicationStore = require('../stores/ApplicationStore');
+const RouterMixin = require('flux-router-component').RouterMixin;
+const FluxibleMixin = require('fluxible').FluxibleMixin;
+const debug = require('debug')('application');
 
-var Application = React.createClass({
+const Application = React.createClass({
     mixins: [FluxibleMixin, RouterMixin],
     statics: {
         storeListeners: [ApplicationStore]

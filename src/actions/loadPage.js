@@ -1,13 +1,16 @@
 'use strict';
 
 var loadPosts = function(context, done) {
-	return (err, posts) => {
+	return (err, result) => {
+		let posts = result.posts;
+		let cat = result.cat;
 		if(err || !posts) {
 			console.log('errorpost', err);
 		}
 		//TODO: posts === [], then  404
 		context.dispatch('LOAD_POSTS', {
-			posts: posts
+			posts: posts,
+			cat: cat
 		});
 		done();
 	};
@@ -39,11 +42,15 @@ module.exports = {
 	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	},
 	year: function(context, payload, done) {
-		context.service.read('post', {year: payload.params.year}, {}, loadPosts(context, done))
+		context.service.read('post', {year: payload.params.year, cat: payload.params.cat, type: 'post'}, {}, loadPosts(context, done))
 	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
 	},
 	cat: function(context, payload, done) {
-		context.service.read('post', {cat: payload.params.cat }, {}, loadPosts(context, done))
+		context.service.read('post', {cat: payload.params.cat, type: 'post' }, {}, loadPosts(context, done))
 	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
-	}
+	},
+	all: function(context, payload, done) {
+		context.service.read('post', {type: 'post'}, {}, loadPosts(context, done))
+	    //TODO: context.dispatch('UPDATE_PAGE_TITLE', payload.config.title);
+	},
 };

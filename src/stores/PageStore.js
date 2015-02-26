@@ -19,15 +19,18 @@ var PageStore = createStore({
     handleLoadPosts: function (payload) {
         debug(payload);
         this.pages = payload.posts.map((post) => Object.assign(post, {type: 'post'}));
+        this.cat = payload.cat;
         this.emitChange();
     },
     handleLoadPages: function (payload) {
         this.pages = payload.pages;
+        this.cat = payload.cat;
         this.emitChange();
     },
     getState: function () {
         return {
-            pages: this.pages
+            pages: this.pages,
+            cat: this.cat
         };
     },
     dehydrate: function () {
@@ -35,6 +38,7 @@ var PageStore = createStore({
     },
     rehydrate: function (state) {
         this.pages = state.pages;
+        this.cat = state.cat;
     }
 });
 

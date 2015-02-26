@@ -1,17 +1,8 @@
 'use strict';
 
 const Post = require('../models/post');
+const Term = require('../models/term');
 const debug = require('debug')('postservice');
-
-
-var pages = {
-	hej: {date: Date.now(), title: 'derp', content: ':D'},
-	hopp: {
-		date: Date.now(),
-		title: 'EN TILL BLAWG',
-		content: 'BLOGGELIblogg'
-	}
-};
 
 module.exports = {
 	name: 'post',
@@ -20,16 +11,24 @@ module.exports = {
 		Object.keys(params).forEach(key => {
 			query[key] = params[key];
 		});
-		console.log(query)
-		Post.find(query).exec().then(posts => {
-			let result = posts.map(post => post.toObject());
+		let done = data => {
+			let posts = data[0];
+			let cat = data[1];
+			let result = {
+				posts: posts.map(post => post.toObject()),
+				cat: cat
+			};
 			console.log('GOT IT')
 			cb(null, result);
-		}, err => {
-			console.log('ERROR');
-			console.log(err);
-			cb(null, []);
-		}).end();
+		};
+		let error = err => {
+			console.error('ERROR', err);
+			cb(null, {posts: [], cat: {}});
+		};
+		return Promise.all([
+			Post.find(query).exec(),
+			Term.findOne({slug: params.cat}).exec()])
+		.then(done, error);
 	},
 	create: function(req, resource, post, body, config, cb) {
 		post.type = 'post';

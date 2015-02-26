@@ -22,10 +22,8 @@ module.exports = {
     home: {
         path: '/',
         method: 'get',
-        page: 'home',
         type: 'page',
-        title: 'Home',
-        action: loadPage.page
+        action: loadPage.all
     },
     about: {
         path: '/about',

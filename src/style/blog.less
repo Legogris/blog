@@ -1,14 +1,24 @@
 @body-bg:	#f7f3ee;
 @content-bg: #fafafa;
 @border-color: #bbb;
+@text-color: #222;
+@link-color: #222;
 
 
 body, html, #app , #main{
 	height: 100%;
 	background: @body-bg;
+	color: @text-color;
+}
+a {
+	color: @link-color;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: underline;
+	color: #663399;
 }
 #app {
-	color: #555;
 }
 #main {
 	min-height: 100vh;
@@ -104,17 +114,27 @@ body, html, #app , #main{
 	}
 }
 #sidebar {
+	.description {
+		display: block;
+		padding-bottom: 1em;
+	}
+	.social {
+		position: absolute;
+		bottom: 1em;
+	}
 	background: @content-bg;
 	border-left: 1px solid @border-color;
 	position: fixed;
 	top: 0;
 	right: 0;
 	height: 100%;
-	color: #222;
 	.egobox {
 		margin: 1em;
 	}
-
+	.feed-link img {
+		width: 20px;
+		height: 20px;
+	}
 	.github {
 		border: 0 none;
 		height: 20px;
