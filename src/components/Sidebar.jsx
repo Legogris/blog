@@ -16,11 +16,8 @@ const Sidebar = React.createClass({
                 <span className="description" dangerouslySetInnerHTML={{__html: description}} />
                 <section className="social">
                     <a href="/feed/food" className="feed-link" title="Subscribe (RSS)"><img src="/static/feed-icon.svg" alt="Subscribe (RSS)"/></a>
-                    &nbsp;
                     <iframe src="/static/github.html" frameBorder="0" scrolling="0" width="170px" height="20px" className="github"></iframe>
-                    &nbsp;
                     <iframe src="/static/twitter.html"  className="twitter" frameBorder="0" scrolling="no" allowTransparency="true"/>
-                    &nbsp;
                     <a href="https://www.linkedin.com/in/edstrom" className="linkedin" target="_blank" title="Find me on LinkedIn"><span></span></a>
                 </section>
         	</div>
