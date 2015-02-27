@@ -25,6 +25,7 @@ a:hover {
 	margin-left: 1em;
 }
 #main-wrapper {
+	margin-top: 1.5em;
 	max-width: 50em;
 	margin-left: auto;
 	margin-right: auto;
@@ -71,11 +72,6 @@ a:hover {
 #layout {
 }
 .content {
-	background: @content-bg;
-	border-radius: 0.2em;
-	border: 1px solid @border-color;
-	padding: 1em;
-	min-height: 10em;
 	h1, h2, h3, h4 {
 		color: #222;
 	}
@@ -101,9 +97,11 @@ a:hover {
 		font-family: sans-serif;
 	}
 	article {
+		margin-bottom: 3em;
 	}
 	section.share {
 		padding: 1em 0;
+		border-top: 1px solid #bbb;
 		* {
 			margin-right: 1em;
 		}
@@ -123,6 +121,11 @@ a:hover {
 		}
 	}
 	.page {
+		background: @content-bg;
+		border-radius: 0.2em;
+		border: 1px solid @border-color;
+		padding: 1em 2em;
+		min-height: 10em;
 		margin: 0 0 2em;
 		border-bottom: 1px solid #aaa;
 
@@ -164,6 +167,7 @@ a:hover {
 			background: url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) -29px -39px no-repeat;
 		}
 	}
+	min-width: 16.6em;
 	background: @content-bg;
 	border-left: 1px solid @border-color;
 	position: fixed;

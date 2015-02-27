@@ -15,6 +15,8 @@ require('./style/skin.less');
 require('./static/twitter.html');
 require('./static/github.html');
 require('./static/feed-icon.svg');
+require('./static/header-edge.png');
+require('./static/header-shadow.png');
 // expose debug object to browser, so that it can be enabled/disabled from browser:
 // https://github.com/visionmedia/debug#browser-support
 window.fluxibleDebug = debug;

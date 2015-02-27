@@ -37,7 +37,8 @@ conf = {
             { test: /\.jsx$/, loader: 'babel-loader?optional=runtime!jsx-loader', exclude: [/node_modules/, /bower_components/]},
             { test: /\.json$/, loader: 'babel-loader?optional=runtime!json-loader', exclude: [/node_modules/, /bower_components/]},
             { test: /\.js$/, loader: 'babel-loader?optional=runtime', exclude: [/node_modules/, /bower_components/]},
-            { test: /\.((html)|(svg))$/, loader: 'file?name=../static/[name].[ext]'}
+            { test: /\.((html)|(svg))$/, loader: 'file?name=../static/[name].[ext]'},
+            { test: /\.png$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/png'}
         ]
     },
     stats: {
