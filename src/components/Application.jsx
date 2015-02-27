@@ -42,15 +42,15 @@ const Application = React.createClass({
             <div id="layout" className="pure-g">
                 <div id="main" className="pure-u-1 pure-u-md-3-4">
                     <div id="main-wrapper">
-                        <nav id="header">
-                            <Nav alignment="horizontal" selected={this.state.route} links={this.state.pages.topmenu} />
-                        </nav>
                         <div className="content">
                             {output}
                         </div>
                     </div>
                 </div>
                 <aside id="sidebar" className="pure-u-1 pure-u-md-1-4">
+                        <nav id="header">
+                            <Nav alignment="horizontal" selected={this.getStore(ApplicationStore).getCurrentRoute()} links={this.getStore(ApplicationStore).getPages().topmenu} />
+                        </nav>
                     <Sidebar links={this.state.pages.sidebar} currentRoute={this.state.route}/>
                 </aside>
             </div>

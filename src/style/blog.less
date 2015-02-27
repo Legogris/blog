@@ -30,25 +30,37 @@ a:hover {
 	margin-right: auto;
 }
 #header {
-	margin-left: 0.1em;
+    margin-left: 0.1em;
+    padding-right: 6px;
+    position: absolute;
+    top: 1.3em;
+    left: -0.5em;
 	ul {
-		border-top-left-radius: 1em;
-		border-top-right-radius: 1em;
+		background: url("/static/header-shadow.png") no-repeat scroll bottom 0px left 0 transparent;
 		margin: 0;
-		padding: 0;
-		background: @body-bg;
+		padding: 0 0 3px;
 		li.pure-menu-selected{
 			a {
-				background: #663399;
+				background: #b200d3;
+				border-top: 1px solid #e76df0;
+				border-bottom: 1px solid #663399;
 			}
+		}
+		li:first-child {
+		    border-left: 1px solid #a7a7a7;
+		    border-radius: 2px;
+		}
+		li:last-child {
+			background: url("/static/header-edge.png") repeat-y scroll right 0 top -1px rgba(0, 0, 0, 0);
+			padding-right: 0.5em;
 		}
 		li {
 			a {
-				background: #555;
-				border-left: 1px solid #222;
-				border-top: 1px solid #222;
-				border-top-left-radius: 0.6em;
-				border-top-right-radius: 0.6em;
+				background: #d4d4d4;
+				color: #eee;
+				padding: 14px;
+				border-top: 1px solid #e6e6e6;
+				border-bottom: 1px solid #c5c5c5;
 			}
 			a:hover {
 				background: #000;
@@ -161,18 +173,7 @@ a:hover {
 	.egobox {
 		margin: 1em;
 	}
-
-
-
-
 	.side-container {
 		margin: 80% 0;
-	}
-
-	ul {
-		border: none;
-		list-style: none;
-		padding: 0;
-		margin: 0;
 	}
 }

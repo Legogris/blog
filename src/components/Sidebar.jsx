@@ -21,7 +21,6 @@ const Sidebar = React.createClass({
                     <a href="https://www.linkedin.com/in/edstrom" className="linkedin" target="_blank" title="Find me on LinkedIn"><span></span></a>
                 </section>
         	</div>
-        	<Nav alignment="vertical" selected={this.props.currentRoute} links={this.props.links} />
         </div>);
     }
 });
