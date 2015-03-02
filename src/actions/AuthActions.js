@@ -9,7 +9,7 @@ const AuthActions = {
 			if(err) {
 				console.log('Error in AuthActions.login: ', err)
 			}
-			done(post);
+			done();
 		});
 	}
 };

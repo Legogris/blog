@@ -41,9 +41,9 @@ db.once('open', () => {
 
 
 //========== AUTH ===============
-passport.serializeUser(Auth.serializeUser);
-passport.deserializeUser(Auth.deserializeUser);
-passport.use(Auth.strategy);
+///passport.serializeUser(Auth.serializeUser);
+//passport.deserializeUser(Auth.deserializeUser);
+//passport.use(Auth.strategy);
 
 //========== EXPRESS ===============
 const server = express();
@@ -56,7 +56,6 @@ server.set('state namespace', 'App');
 server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
 server.use('/static', express.static(__dirname + '/../'+staticPath+'/static'));
-server.get('/auth/callback', Auth.callback);
 
 server.get('/feed/:cat', (req, res) => {
     console.log(Feed.generate(req.params.cat, 20).then(feed => {
@@ -85,6 +84,7 @@ fetchr.registerService(require('./services/AuthService'));
 
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
+server.get('/auth/callback', Auth.callback);
 server.use(function (req, res, next) {
     let context = app.createContext({
         req: req,

@@ -19,7 +19,8 @@ const Login = React.createClass({
 		);
 	},
 	login: function() {
-		this.executeAction(AuthActions.login, this.state);
+		this.executeAction(AuthActions.login,
+			{ originalURL: 'http://remerge.net/' });
 	},
 	handleChange: function(e) {
 		this.setState({username: e.target.value});

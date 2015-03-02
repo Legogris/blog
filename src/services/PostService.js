@@ -33,6 +33,8 @@ module.exports = {
 		.then(done, error);
 	},
 	create: function(req, resource, post, body, config, cb) {
+		console.log('USER')
+		console.log(req.session);
 		post.type = 'post';
 		let done = (err, post) => {
 			if(err) {

@@ -11,11 +11,8 @@ const AuthStore = createStore({
 		console.log('store init', arguments);
 	},
 	onNavigate: function(payload) {
-			console.log('HEJ');
 		if(payload.config.admin) {
-
-		}
-		payload.action = function() {
+			console.log('HEEEEJ')
 		}
 		return payload.action
 	},
