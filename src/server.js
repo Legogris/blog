@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * This leverages Express to create and run the http server.
  * A fluxible context is created and executes the navigateAction
@@ -12,8 +11,11 @@ require('node-jsx').install({ harmony: true, extension: '.jsx' });
 require('object.assign').shim(); //ES6 Shims
 
 const express = require('express');
+const passport = require('passport');
 const serialize = require('serialize-javascript');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const React = require('react');
@@ -37,6 +39,12 @@ db.once('open', () => {
     console.log('Connected to db')
 });
 
+
+//========== AUTH ===============
+passport.serializeUser(Auth.serializeUser);
+passport.deserializeUser(Auth.deserializeUser);
+passport.use(Auth.strategy);
+
 //========== EXPRESS ===============
 const server = express();
 const staticPath = {
@@ -58,13 +66,20 @@ server.get('/feed/:cat', (req, res) => {
         throw new Error(err);
     }));
 });
+
+//MIDDLEWARE
 server.use(cookieParser());
 server.use(bodyParser.json());
-//server.use(csrf({cookie: true}));
+server.use(methodOverride());
+server.use(session({secret: config.sessionSecret }));
+server.use(passport.initialize());
+server.use(passport.session());
+server.use(csrf({cookie: true}));
 
 //SERVICES
 fetchr.registerService(require('./services/PageService'));
 fetchr.registerService(require('./services/PostService'));
+fetchr.registerService(require('./services/AuthService'));
 
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
@@ -72,7 +87,7 @@ server.use(function (req, res, next) {
     let context = app.createContext({
         req: req,
         xhrContext: {
-        //    _csrf: req.csrfToken()
+            _csrf: req.csrfToken()
         }
     });
 

@@ -3,6 +3,7 @@ const React = require('react');
 const Nav = require('./Nav.jsx');
 const PageList = require('./PageList.jsx');
 const Editor = require('./Editor.jsx');
+const Login = require('./Login.jsx');
 const Sidebar = require('./Sidebar.jsx');
 const ApplicationStore = require('../stores/ApplicationStore');
 const RouterMixin = require('flux-router-component').RouterMixin;
@@ -30,12 +31,17 @@ const Application = React.createClass({
     },
     render: function () {
         var output = '';
+        switch (this.state.route.name) {
+            case 'login':
+                output = <Login />;
+                break;
+            case 'edit':
+                output = <Editor />;
+                break;
+        }
         switch (this.state.route.config.type) {
             case 'page':
                 output = <PageList />;
-                break;
-            case 'admin':
-                output = <Editor />;
                 break;
         }
         return (

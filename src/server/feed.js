@@ -1,7 +1,7 @@
 const RSS = require('rss');
-const Post = require('./models/post');
-const Term = require('./models/term');
-const site = require('./configs/site');
+const Post = require('../models/post');
+const Term = require('../models/term');
+const site = require('../configs/site');
 
 const Feed = {
 	generate: function(category, itemCount) {

@@ -1,8 +1,8 @@
 'use strict';
-var createStore = require('fluxible/utils/createStore');
-var pagesConfig = require('../configs/pages');
+const createStore = require('fluxible/utils/createStore');
+const pagesConfig = require('../configs/pages');
 
-var ApplicationStore = createStore({
+const ApplicationStore = createStore({
     storeName: 'ApplicationStore',
     handlers: {
         'CHANGE_ROUTE_SUCCESS' : 'onNavigate',

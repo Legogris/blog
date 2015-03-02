@@ -7,6 +7,8 @@ const debug = require('debug')('postservice');
 module.exports = {
 	name: 'post',
 	read: function(req, resource, params, config, cb) {
+		console.log('SERVICE READ')
+		console.log(req.session)
 		let query = {};
 		Object.keys(params).forEach(key => {
 			query[key] = params[key];
@@ -23,7 +25,7 @@ module.exports = {
 		};
 		let error = err => {
 			console.error('ERROR', err);
-			cb(null, {posts: [], cat: {}});
+			cb(err, {posts: [], cat: {}});
 		};
 		return Promise.all([
 			Post.find(query).exec(),

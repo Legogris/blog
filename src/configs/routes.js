@@ -1,8 +1,12 @@
 'use strict';
 
-var loadPage = require('../actions/loadPage');
+const loadPage = require('../actions/loadPage');
 
 module.exports = {
+    login: {
+        path: '/login',
+        method: 'get',
+    },
     //admin pages
     edit: {
         path: '/:cat/:year(\\d{4})/:slug/edit',

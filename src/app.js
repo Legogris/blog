@@ -22,5 +22,6 @@ app.plug(fetchr);
 // register stores
 app.registerStore(require('./stores/ApplicationStore'));
 app.registerStore(require('./stores/PageStore'));
+app.registerStore(require('./stores/AuthStore'));
 
 module.exports = app;
