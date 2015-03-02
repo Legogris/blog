@@ -3,7 +3,7 @@ const Post = require('./models/post');
 const Term = require('./models/term');
 const site = require('./configs/site');
 
-Feed = {
+const Feed = {
 	generate: function(category, itemCount) {
 		return Promise.all([
 			Term.findOne({slug: category}).exec(), 

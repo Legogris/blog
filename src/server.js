@@ -9,9 +9,7 @@
  */
 
 require('node-jsx').install({ harmony: true, extension: '.jsx' });
-
-//ES6 Shims
-require('object.assign').shim();
+require('object.assign').shim(); //ES6 Shims
 
 const express = require('express');
 const serialize = require('serialize-javascript');
@@ -22,23 +20,24 @@ const React = require('react');
 const navigateAction = require('flux-router-component').navigateAction;
 const debug = require('debug')('blog');
 
-
-const Feed = require('./feed.js');
+const Feed = require('./server/feed.js');
+const Auth = require('./server/auth.js');
 const app = require('./app');
 const fetchr = app.getPlugin('FetchrPlugin');
 const htmlComponent = React.createFactory(require('./components/Html.jsx'));
+const config = require('./configs/server.js');
 
 
-//Database
+//========== DATABASE ===============
 const mongoose = require('mongoose');
 mongoose.connect('mongo', 'blog');
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
     console.log('Connected to db')
 });
 
+//========== EXPRESS ===============
 const server = express();
 const staticPath = {
     development: 'build',
@@ -66,6 +65,7 @@ server.use(bodyParser.json());
 //SERVICES
 fetchr.registerService(require('./services/PageService'));
 fetchr.registerService(require('./services/PostService'));
+
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
 server.use(function (req, res, next) {
@@ -110,11 +110,10 @@ server.use(function (req, res, next) {
     });
 });
 
-var port = process.env.PORT || 3000;
-server.listen(port);
-console.log('Listening on port ' + port);
+server.listen(config.port);
+console.log('Listening on port ' + config.port);
 
-
+//Live reload for dev
 if(server.get('env') === 'development') {
     try {
         var req = require('http').request({
