@@ -1,7 +1,8 @@
 'use strict';
 const React = require('react');
-const AuthStore = require('../stores/AuthStore');
 const FluxibleMixin = require('fluxible').FluxibleMixin;
+const NavLink = require('flux-router-component').NavLink;
+const AuthStore = require('../stores/AuthStore');
 
 const Page = React.createClass({
     mixins: [FluxibleMixin],
@@ -25,6 +26,9 @@ const Page = React.createClass({
     	let page = this.props.page;
     	let shareURI = encodeURIComponent(page.absoluteURI);
     	let shareTitle = encodeURIComponent(page.title);
+        let termHTML = page.terms.map(term => {
+            return (<NavLink key={term} href={'/' + term} className={term === page.cat ? 'cat' : 'tag'}>{term}</NavLink>)
+        });
     	let result = (
         	<div className="page">
 	        	<article>
@@ -34,6 +38,9 @@ const Page = React.createClass({
 			            {page.content}
 		            </div>
 	            </article>
+                <section className="terms">
+                    {termHTML}
+                </section>
 	            <section className="share">
                     {page.hackerNewsID > 0 ? <a href={'https://news.ycombinator.com/item?id='+page.hackerNewsID} className="hn-link" title="Share on Hacker News" target="_blank">&#xf13b;</a> : null }
                     <a href={'https://www.facebook.com/dialog/feed?sharer/sharer.php?u='+shareURI} className="facebook-link" title="Share on Facebook" target="_blank">&#xf125;</a>
