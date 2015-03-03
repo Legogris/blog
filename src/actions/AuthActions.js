@@ -3,11 +3,11 @@
 const AuthActions = {
 	login: function(context, payload, done) {
 		context.service.read('auth', payload, {}, function(err, result) {
-			//TODO: agnosticism
+			//This should only be ran from client
 			if(err) {
 				console.log('Error in AuthActions.login: ', err)
 				//Show error
-			} else {
+			} else if(typeof window !== 'undefined') {
 				window.location = result.redirect;
 			}
 

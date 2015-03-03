@@ -1,7 +1,6 @@
 'use strict';
 
 const debug = require('debug')('authservice');
-const passport = require('passport');
 const config = require('../configs/server.js');
 
 function makeAuthURL(originalURL) {
@@ -13,6 +12,7 @@ function makeAuthURL(originalURL) {
 }
 module.exports = {
 	name: 'auth',
+	makeAuthURL: makeAuthURL,
 	read: function(req, resource, params, config, cb) {
 		console.log('AUTH SERVICE READ')
 		let redirect = makeAuthURL(params.originalURL);

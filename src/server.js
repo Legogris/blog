@@ -72,9 +72,12 @@ server.use(session({secret: config.sessionSecret }));
 server.use(csrf({cookie: true}));
 
 //SERVICES
-fetchr.registerService(require('./services/PageService'));
-fetchr.registerService(require('./services/PostService'));
-fetchr.registerService(require('./services/AuthService'));
+const PageService = require('./services/PageService');
+const PostService = require('./services/PostService');
+const AuthService = require('./services/AuthService');
+fetchr.registerService(PageService);
+fetchr.registerService(PostService);
+fetchr.registerService(AuthService);
 
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());
 
@@ -86,8 +89,21 @@ server.use(function (req, res, next) {
             _csrf: req.csrfToken()
         }
     });
+    let actionContext = context.getActionContext(); 
 
     debug('Executing navigate action');
+    //Check if protected resource
+    let isProtected = actionContext.router.getRoute(req.url).config.admin;
+    let user = req.session.user;
+    if(isProtected && typeof user === 'undefined') {
+        console.log('Trying to access protected resource');
+        res.writeHead(302, {
+            Location: AuthService.makeAuthURL(req.url)
+        });
+        res.end();
+        return;
+    }
+    
     context.getActionContext().executeAction(navigateAction, {
         url: req.url
     }, function (err) {
@@ -99,9 +115,8 @@ server.use(function (req, res, next) {
             }
             return;
         }
-
         debug('Exposing context state');
-        var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';window.App.user='+JSON.stringify(req.session.user);
+        var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';window.App.user='+JSON.stringify(user);
         debug('Rendering Application component into html');
         var appComponent = app.getAppComponent();
         React.withContext(context.getComponentContext(), () => {

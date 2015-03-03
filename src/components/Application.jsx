@@ -9,12 +9,16 @@ const ApplicationStore = require('../stores/ApplicationStore');
 const AuthStore = require('../stores/AuthStore');
 const RouterMixin = require('flux-router-component').RouterMixin;
 const FluxibleMixin = require('fluxible').FluxibleMixin;
+const AuthActions = require('../actions/AuthActions');
 const debug = require('debug')('application');
 
 const Application = React.createClass({
     mixins: [FluxibleMixin, RouterMixin],
     statics: {
         storeListeners: [ApplicationStore, AuthStore]
+    },
+    login: function() {
+        this.executeAction(AuthActions.login, { originalURL: this.state.route.url });
     },
     getInitialState: function () {
         return this.getState();
@@ -34,12 +38,13 @@ const Application = React.createClass({
     },
     render: function () {
         var output = '';
+        if(this.state.route.config.admin && !this.state.user.admin) {
+            this.login();
+            return;
+        }
         switch (this.state.route.name) {
-            case 'login':
-                output = <Login />;
-                break;
             case 'edit':
-                output = this.state.user.admin ? <Editor /> : <Login />;
+                output = <Editor />;
                 break;
         }
         switch (this.state.route.config.type) {
