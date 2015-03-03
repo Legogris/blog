@@ -25,6 +25,9 @@ const Editor = React.createClass({
                     <div className="pure-control-group">
                         <label htmlFor="slug">Slug</label><input type="text" value={post.slug} onChange={this.handleTextChange('slug')}/>
                     </div>
+                    <div className="pure-control-group">
+                        <label htmlFor="hackerNewsID">HN ID</label><input type="number" value={post.hackerNewsID} onChange={this.handleTextChange('hackerNewsID')}/>
+                    </div>
                     <div className="pure-controls">
                         <textarea onChange={this.handleTextChange('content')} value={post.content}/>
                         <button onClick={this.handleSave} className="pure-button pure-button-primary">Publish</button>

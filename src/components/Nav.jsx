@@ -1,8 +1,8 @@
 'use strict';
-var React = require('react');
-var NavLink = require('flux-router-component').NavLink;
+const React = require('react');
+const NavLink = require('flux-router-component').NavLink;
 
-var Nav = React.createClass({
+const Nav = React.createClass({
     getDefaultProps: function () {
         return {
             selected: 'home',
