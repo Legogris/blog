@@ -39,7 +39,7 @@ const Application = React.createClass({
                 output = <Login />;
                 break;
             case 'edit':
-                output = <Editor />;
+                output = this.state.user.admin ? <Editor /> : <Login />;
                 break;
         }
         switch (this.state.route.config.type) {

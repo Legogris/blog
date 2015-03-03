@@ -101,7 +101,7 @@ server.use(function (req, res, next) {
         }
 
         debug('Exposing context state');
-        var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';';
+        var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';window.App.user='+JSON.stringify(req.session.user);
         debug('Rendering Application component into html');
         var appComponent = app.getAppComponent();
         React.withContext(context.getComponentContext(), () => {
