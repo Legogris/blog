@@ -10,7 +10,6 @@ module.exports = {
     //admin pages
     edit: {
         path: '/:cat/:year(\\d{4})/:slug/edit',
-        type: 'admin',
         method: 'get',
         admin: true,
         action: loadPage.static

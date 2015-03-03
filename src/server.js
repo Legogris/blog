@@ -11,7 +11,6 @@ require('node-jsx').install({ harmony: true, extension: '.jsx' });
 require('object.assign').shim(); //ES6 Shims
 
 const express = require('express');
-const passport = require('passport');
 const serialize = require('serialize-javascript');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -41,9 +40,6 @@ db.once('open', () => {
 
 
 //========== AUTH ===============
-///passport.serializeUser(Auth.serializeUser);
-//passport.deserializeUser(Auth.deserializeUser);
-//passport.use(Auth.strategy);
 
 //========== EXPRESS ===============
 const server = express();
@@ -73,8 +69,6 @@ server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(methodOverride());
 server.use(session({secret: config.sessionSecret }));
-server.use(passport.initialize());
-server.use(passport.session());
 server.use(csrf({cookie: true}));
 
 //SERVICES

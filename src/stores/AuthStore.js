@@ -5,22 +5,32 @@ const createStore = require('fluxible/utils/createStore');
 const AuthStore = createStore({
 	storeName: 'AuthStore',
 	handlers: {
-		'CHANGE_ROUTE_START': 'onNavigate'
+		'LOAD_USER': 'onUser'
 	},
 	initialize: function() {
 		console.log('store init', arguments);
+		this.user = {username: '', admin: false};
 	},
-	onNavigate: function(payload) {
-		if(payload.config.admin) {
-			console.log('HEEEEJ')
+	onUser: function(payload) {
+		let oldUser = this.user;
+		this.user = payload.user || {username: '', admin: false}
+		if(this.user.username !== oldUser.username ||
+		   this.user.admin !== oldUser.admin) {
+			this.emitChange();
 		}
-		return payload.action
+	},
+	getUser: function() {
+		return this.user;
 	},
 	dehydrate: function() {
 		console.log('dehydrate');
+		return {
+			user: this.user
+		}
 	},
-	hydrate: function() {
+	hydrate: function(state) {
 		console.log('hydrate');
+		this.user = state.user;
 	}
 });
 

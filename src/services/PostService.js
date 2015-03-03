@@ -3,12 +3,15 @@
 const Post = require('../models/post');
 const Term = require('../models/term');
 const debug = require('debug')('postservice');
+function callback(cb, req, result, err) {
+	result.user =  req.session.user || null;
+	cb(err || null, result);
+}
 
 module.exports = {
 	name: 'post',
 	read: function(req, resource, params, config, cb) {
 		console.log('SERVICE READ')
-		console.log(req.session)
 		let query = {};
 		Object.keys(params).forEach(key => {
 			query[key] = params[key];
@@ -18,14 +21,14 @@ module.exports = {
 			let cat = data[1];
 			let result = {
 				posts: posts.map(post => post.toObject()),
-				cat: cat
+				cat: cat,
 			};
 			console.log('GOT IT')
-			cb(null, result);
+			callback(cb, req, result);
 		};
 		let error = err => {
 			console.error('ERROR', err);
-			cb(err, {posts: [], cat: {}});
+			callback(cb, req, {posts: [], cat: {}}, err);
 		};
 		return Promise.all([
 			Post.find(query).exec(),

@@ -1,6 +1,5 @@
 const https = require('https');
 const config = require('../configs/server.js');
-const LocalStrategy = require('passport-local').Strategy;
 const querystring = require('querystring');
 const jwt = require('jsonwebtoken');
 

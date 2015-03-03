@@ -6,6 +6,7 @@ const Editor = require('./Editor.jsx');
 const Login = require('./Login.jsx');
 const Sidebar = require('./Sidebar.jsx');
 const ApplicationStore = require('../stores/ApplicationStore');
+const AuthStore = require('../stores/AuthStore');
 const RouterMixin = require('flux-router-component').RouterMixin;
 const FluxibleMixin = require('fluxible').FluxibleMixin;
 const debug = require('debug')('application');
@@ -13,14 +14,16 @@ const debug = require('debug')('application');
 const Application = React.createClass({
     mixins: [FluxibleMixin, RouterMixin],
     statics: {
-        storeListeners: [ApplicationStore]
+        storeListeners: [ApplicationStore, AuthStore]
     },
     getInitialState: function () {
         return this.getState();
     },
     getState: function () {
         let appStore = this.getStore(ApplicationStore);
+        let authStore = this.getStore(AuthStore);
         return {
+            user: authStore.getUser(),
             pageTitle: appStore.getPageTitle(),
             route: appStore.getCurrentRoute(),
             pages: appStore.getPages()

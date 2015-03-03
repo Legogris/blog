@@ -1,15 +1,35 @@
 'use strict';
-var React = require('react');
+const React = require('react');
+const AuthStore = require('../stores/AuthStore');
+const FluxibleMixin = require('fluxible').FluxibleMixin;
 
-var Page = React.createClass({
+const Page = React.createClass({
+    mixins: [FluxibleMixin],
+    statics: {
+        storeListeners: [AuthStore]
+    },
+    getInitialState: function () {
+        return this.getState();
+    },
+    getState: function () {
+        let authStore = this.getStore(AuthStore);
+        return {
+            user: authStore.getUser(),
+        };
+    },
+    onChange: function () {
+        this.setState(this.getState());
+        console.log('CHANGE:' + this.state);
+    },
     render: function() {
     	let page = this.props.page;
     	let shareURI = encodeURIComponent(page.absoluteURI);
     	let shareTitle = encodeURIComponent(page.title);
-        return (
+    	let result = (
         	<div className="page">
 	        	<article>
 		            <h1><a href={page.uri}>{page.title}</a></h1>
+		            {this.state.user.admin ? <a href={page.uri + '/edit'}>Edit</a> : <div></div>}
 		            <div className="block-content">
 			            {page.content}
 		            </div>
@@ -20,9 +40,16 @@ var Page = React.createClass({
 		            <iframe className='hn-share' src={'//hnbutton.appspot.com/button?title=' + shareTitle + '&url=' + shareURI} frameBorder="0" scrolling="no" />
 	            </section>
             </div>
-	        );
-	    }
-	});
+        );
+		return result;
+    },
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return true;
+    },
+    componentDidUpdate: function(prevProps, prevState) {
+        console.log('page.componentDidUpdate', this.state, prevState);
+    }
+});
 //TODO: URLencode title, url
 
 module.exports = Page;

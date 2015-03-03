@@ -8,6 +8,9 @@ var loadPosts = function(context, done) {
 			console.log('errorpost', err);
 		}
 		//TODO: posts === [], then  404
+			context.dispatch('LOAD_USER', {
+				user: result.user
+			});
 		context.dispatch('LOAD_POSTS', {
 			posts: posts,
 			cat: cat
