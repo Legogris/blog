@@ -10,13 +10,27 @@ const Editor = React.createClass({
     render: function() {
     	let post = this.state.post;
         return (
-            <div>
-            	Terms: <input type="text" value={post.terms.length == 0 ? '' : post.terms.reduce((x,y) => x + ' ' + y)} onChange={this.handleTermsChange}/><br />
-                Title: <input type="text" value={post.title} onChange={this.handleTextChange('title')}/><br />
-                Category: <input type="text" value={post.cat} onChange={this.handleTextChange('cat')}/><br />
-                Slug: <input type="text" value={post.slug} onChange={this.handleTextChange('slug')}/><br />
-                <textarea onChange={this.handleTextChange('content')} value={post.content}/><br />
-            	<button onClick={this.handleSave}>Publish</button>
+            <div className="editor">
+            <form className="pure-form pure-form-aligned">
+                <fieldset>
+                    <div className="pure-control-group">
+                        <label htmlFor="terms">Terms</label><input type="text" value={post.terms.length == 0 ? '' : post.terms.reduce((x,y) => x + ' ' + y)} onChange={this.handleTermsChange}/>
+                    </div>
+                    <div className="pure-control-group">
+                        <label htmlFor="title">Title</label><input type="text" value={post.title} onChange={this.handleTextChange('title')}/>
+                    </div>
+                    <div className="pure-control-group">
+                        <label htmlFor="category">Category</label><input type="text" value={post.cat} onChange={this.handleTextChange('cat')}/>
+                    </div>
+                    <div className="pure-control-group">
+                        <label htmlFor="slug">Slug</label><input type="text" value={post.slug} onChange={this.handleTextChange('slug')}/>
+                    </div>
+                    <div className="pure-controls">
+                        <textarea onChange={this.handleTextChange('content')} value={post.content}/>
+                        <button onClick={this.handleSave} className="pure-button pure-button-primary">Publish</button>
+                    </div>
+                </fieldset>
+            </form>
         	</div>)
     },
     getInitialState: function() {
