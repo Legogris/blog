@@ -37,8 +37,11 @@ conf = {
             { test: /\.jsx$/, loader: 'babel-loader?optional=runtime!jsx-loader', exclude: [/node_modules/, /bower_components/]},
             { test: /\.json$/, loader: 'babel-loader?optional=runtime!json-loader', exclude: [/node_modules/, /bower_components/]},
             { test: /\.js$/, loader: 'babel-loader?optional=runtime', exclude: [/node_modules/, /bower_components/]},
-            { test: /\.((html)|(svg)|(woff)|(ttf)|(eot))$/, loader: 'file?name=../static/[name].[ext]'},
-            { test: /\.ttf$/, loader: 'file?name=../static/[name].[ext]?mimetype=application/font-ttf'},
+            { test: /\.html$/, loader: 'file?name=../static/[name].[ext]'},
+            { test: /\.ttf$/, loader: 'file?name=../static/[name].[ext]?mimetype=application/octet-stream'},
+            { test: /\.woff$/, loader: 'file?name=../static/[name].[ext]?mimetype=application/font-woff'},
+            { test: /\.svg$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/svg+xml'},
+            { test: /\.eot$/, loader: 'file?name=../static/[name].[ext]'},
             { test: /\.png$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/png'}
         ]
     },
