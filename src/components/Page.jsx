@@ -32,8 +32,8 @@ const Page = React.createClass({
     	let result = (
         	<div className="page">
 	        	<article>
-		            <h1><a href={page.uri}>{page.title}</a></h1>
-		            {this.state.user.admin ? <a href={page.uri + '/edit'}>Edit</a> : <div></div>}
+		            <h1><NavLink href={page.uri}>{page.title}</NavLink></h1>
+		            {this.state.user.admin ? <NavLink href={page.uri + '/edit'}>Edit</NavLink> : <div></div>}
 		            <div className="block-content">
 			            {page.content}
 		            </div>
