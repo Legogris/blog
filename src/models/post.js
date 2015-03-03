@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../configs/site.js');
 
 const postSchema = mongoose.Schema({
 	title: String,
@@ -6,6 +7,7 @@ const postSchema = mongoose.Schema({
 	time: { type: Date, default: Date.now },
 	terms: [String],
 	cat: String,
+	hackerNewsID: { type: Number, default: 0},
 	public: {
 		type: Boolean,
 		default: true
@@ -29,7 +31,7 @@ postSchema.set('toObject', {
 	}
 });
 postSchema.virtual('uri').get(() => '/' + this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
-postSchema.virtual('absoluteURI').get(() => 'http://legogris.se/' + this.uri);
+postSchema.virtual('absoluteURI').get(() => config.url + this.uri);
 
 const Post = mongoose.model('Post', postSchema);
 
