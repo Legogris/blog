@@ -13,6 +13,10 @@ window.React = React; // For chrome dev tool support
 require('./style/blog.less');
 require('./style/skin.less');
 require('./static/twitter.html');
+require('./static/justvectorv2-webfont.svg');
+require('./static/justvectorv2-webfont.ttf');
+require('./static/justvectorv2-webfont.woff');
+require('./static/justvectorv2-webfont.eot');
 require('./static/github.html');
 require('./static/feed-icon.svg');
 require('./static/header-edge.png');
