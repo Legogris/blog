@@ -27,7 +27,7 @@ const Page = React.createClass({
     	let shareURI = encodeURIComponent(page.absoluteURI);
     	let shareTitle = encodeURIComponent(page.title);
         let termHTML = page.terms.map(term => {
-            return (<NavLink key={term} href={'/' + term} className={term === page.cat ? 'cat' : 'tag'}>{term}</NavLink>)
+            return (<NavLink key={term} href={'/' + term} className={term === page.cat ? 'cat cat-' + term : 'tag tag-' + term}>{term}</NavLink>)
         });
     	let result = (
         	<div className="page">

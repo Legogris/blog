@@ -57,6 +57,9 @@ a:hover {
 				border-top: 1px solid @first-cat-light; /*#e76df0;*/
 				border-bottom: 1px solid @first-cat-dark; /*#663399;*/
 			}
+			a:hover {
+				background: @first-cat-light;
+			}
 		}
 		li.pure-menu-selected:nth-child(2){
 			a {
@@ -64,12 +67,18 @@ a:hover {
 				border-top: 1px solid @second-cat-light; /*#e76df0;*/
 				border-bottom: 1px solid @second-cat-dark; /*#663399;*/
 			}
+			a:hover {
+				background: @second-cat-light;
+			}
 		}
 		li.pure-menu-selected:nth-child(3){
 			a {
 				background: @third-cat-color;
 				border-top: 1px solid @third-cat-light; /*#e76df0;*/
 				border-bottom: 1px solid @third-cat-dark; /*#663399;*/
+			}
+			a:hover {
+				background: @third-cat-light;
 			}
 		}
 		li:first-child {
@@ -89,7 +98,9 @@ a:hover {
 				border-bottom: 1px solid #c5c5c5;
 			}
 			a:hover {
-				background: #000;
+				background: #e6e6e6;
+				border-top: 1px solid #f6f6f6;
+				border-bottom: 1px solid #d4d4d4;
 			}
 		}
 	}
@@ -126,6 +137,39 @@ a:hover {
 	article {
 		margin-bottom: 3em;
 	}
+	section.terms {
+		padding: 1em 0;
+		border-top: 1px solid #bbb;
+		a.cat-food {
+			background-color: @first-cat-color;
+		}
+		a.cat-food:hover {
+			background-color: @first-cat-light;
+		}
+		a.cat-hacking {
+			background-color: @second-cat-color;
+		}
+		a.cat-hacking:hover {
+			background-color: @second-cat-light;
+		}
+		a.cat-sundry {
+			background-color: @third-cat-color;
+		}
+		a.cat-sundry:hover {
+			background-color: @third-cat-light;
+		}
+		a {
+			text-decoration: none;
+			background-color: #d4d4d4;
+			color: #fff;
+			padding: 0.1em 1em;
+			border-radius: 3px;
+			margin-right: 1em;
+		}
+		a:hover {
+			background-color: #e6e6e6;
+		}
+	}
 	section.share {
 		a {
 			font-family: 'JustVector';
@@ -139,8 +183,6 @@ a:hover {
 		a:hover {
 			background-color: #663399;
 		}
-		padding: 1em 0;
-		border-top: 1px solid #bbb;
 		* {
 			margin-right: 1em;
 		}
