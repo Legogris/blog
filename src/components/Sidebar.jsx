@@ -15,10 +15,10 @@ const Sidebar = React.createClass({
         	<div className="egobox">
                 <span className="description" dangerouslySetInnerHTML={{__html: description}} />
                 <section className="social">
-                    <a href="/feed/food" className="feed-link" title="Subscribe (RSS)"><img src="/static/feed-icon.svg" alt="Subscribe (RSS)"/></a>
-                    <iframe src="/static/github.html" frameBorder="0" scrolling="0" width="170px" height="20px" className="github"></iframe>
-                    <iframe src="/static/twitter.html"  className="twitter" frameBorder="0" scrolling="no" allowTransparency="true"/>
-                    <a href="https://www.linkedin.com/in/edstrom" className="linkedin" target="_blank" title="Find me on LinkedIn"><span></span></a>
+                    <a href="/feed/food" className="feed-link" title="Subscribe (RSS)">&#xf16e;</a>
+                    <a href="https://github.com/legogris" className="github-link" title="@legogris at GitHub" target="_blank">&#xf133;</a>
+                    <a href="https://twitter.com/legogris" className="twitter-link" title="@legogris at Twitter" target="_blank">&#xf182;</a>
+                    <a href="https://www.linkedin.com/in/edstrom" className="linkedin-link" target="_blank" title="Find me on LinkedIn">&#xf146;</a>
                 </section>
         	</div>
         </div>);

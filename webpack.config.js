@@ -3,7 +3,6 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var bower_dir = __dirname + '/bower_components';
 
-
 conf = {
 	addVendor: function(name, path) {
 	    var c = this;
