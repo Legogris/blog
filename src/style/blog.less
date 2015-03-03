@@ -3,6 +3,15 @@
 @border-color: #bbb;
 @text-color: #222;
 @link-color: #222;
+@first-cat-color: #00933B;
+@first-cat-light: lighten(@first-cat-color, 10%);
+@first-cat-dark: darken(@first-cat-color, 10%);
+@second-cat-color: #ff6600;
+@second-cat-light: lighten(@second-cat-color, 10%);
+@second-cat-dark: darken(@second-cat-color, 10%);
+@third-cat-color: #b200d3;
+@third-cat-light: lighten(@third-cat-color, 20%);
+@third-cat-dark: darken(@third-cat-color, 10%);
 
 
 body, html, #app , #main{
@@ -44,9 +53,23 @@ a:hover {
 		padding: 0 0 3px;
 		li.pure-menu-selected{
 			a {
-				background: #b200d3;
-				border-top: 1px solid #e76df0;
-				border-bottom: 1px solid #663399;
+				background: @first-cat-color;
+				border-top: 1px solid @first-cat-light; /*#e76df0;*/
+				border-bottom: 1px solid @first-cat-dark; /*#663399;*/
+			}
+		}
+		li.pure-menu-selected:nth-child(2){
+			a {
+				background: @second-cat-color;
+				border-top: 1px solid @second-cat-light; /*#e76df0;*/
+				border-bottom: 1px solid @second-cat-dark; /*#663399;*/
+			}
+		}
+		li.pure-menu-selected:nth-child(3){
+			a {
+				background: @third-cat-color;
+				border-top: 1px solid @third-cat-light; /*#e76df0;*/
+				border-bottom: 1px solid @third-cat-dark; /*#663399;*/
 			}
 		}
 		li:first-child {
