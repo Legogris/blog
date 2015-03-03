@@ -3,7 +3,6 @@ const React = require('react');
 const Nav = require('./Nav.jsx');
 const PageList = require('./PageList.jsx');
 const Editor = require('./Editor.jsx');
-const Login = require('./Login.jsx');
 const Sidebar = require('./Sidebar.jsx');
 const ApplicationStore = require('../stores/ApplicationStore');
 const AuthStore = require('../stores/AuthStore');
