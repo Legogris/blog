@@ -10,12 +10,12 @@ const Nav = React.createClass({
         };
     },
     render: function() {
-        var selected = this.props.selected;
-        var links = this.props.links;
+        let selected = this.props.selected;
+        let links = this.props.links;
 
-        var linkHTML = Object.keys(links).map((name) => {
-            var className = '';
-            var link = links[name];
+        let linkHTML = Object.keys(links).map((name) => {
+            let className = '';
+            let link = links[name];
             if (selected.url === link.path) {
                 className = 'pure-menu-selected';
             }
