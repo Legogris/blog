@@ -66,7 +66,7 @@ module.exports = function (grunt) {
 
     // tasks
     grunt.registerTask('livereload', 'live reloading', function() {
-        require('tiny-lr')().listen(35729, function(err) { console.log('LR Server Started'); });
+        require('tiny-lr')().listen(35729, function(err) { console.log('LR Server Started', err); });
     });
     grunt.registerTask('default', ['clean', 'jshint', 'concurrent:dev']);
 };
