@@ -1,15 +1,17 @@
+'use strict';
+
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var bower_dir = __dirname + '/bower_components';
+var bowerDir = __dirname + '/bower_components';
 
-conf = {
-	addVendor: function(name, path) {
-	    var c = this;
-	    c.resolve.alias[name] = path;
-	    c.module.noParse.push(new RegExp('^'+path));
-	    c.entry.vendors.push(name);
-	},
+var conf = {
+    addVendor: function(name, path) {
+        var c = this;
+        c.resolve.alias[name] = path;
+        c.module.noParse.push(new RegExp('^'+path));
+        c.entry.vendors.push(name);
+    },
     resolve: {
         extensions: ['', '.js', '.jsx'],
         alias: {
@@ -29,7 +31,7 @@ conf = {
         filename: '[name].js'
     },
     module: {
-        noParse: [bower_dir + '/react/react.min.js'],
+        noParse: [bowerDir + '/react/react.min.js'],
         loaders: [
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
             { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
@@ -49,6 +51,7 @@ conf = {
     },
 };
 
-conf.addVendor('react', bower_dir + '/react/react.min.js');
+conf.addVendor('react', bowerDir + '/react/react.min.js');
+conf.addVendor('fluxible', bowerDir + '/fluxible');
 
 module.exports = conf;
