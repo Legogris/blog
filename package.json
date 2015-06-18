@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "grunt livereload concurrent:dev",
     "deploy": "grunt webpack:prod",
-    "lint": "grunt jshint",
-    "preinstall": "sudo npm i -g jshint bower nodemon grunt-cli"
+    "lint": "grunt jshint"
   },
   "dependencies": {
     "body-parser": "^1.6.4",
