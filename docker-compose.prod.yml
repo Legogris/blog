@@ -10,7 +10,7 @@ web:
     - VIRTUAL_HOST=remerge.net
     - VIRTUAL_PORT=3000
     - NODE_ENV=production
-  command: node --harmony src/server.js
+  #command: node --harmony src/server.js
 mongo:
   extends:
     file: docker-compose.yml

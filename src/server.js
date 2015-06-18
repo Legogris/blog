@@ -68,7 +68,7 @@ server.get('/feed/:cat', (req, res) => {
 server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(methodOverride());
-server.use(session({secret: config.sessionSecret }));
+server.use(session({secret: config.sessionSecret, resave: true, saveUninitialized: false})); //TODO: Fix touch and set resave false. Maybe saveUnintialized to false, too.
 server.use(csrf({cookie: true}));
 
 //SERVICES
@@ -91,7 +91,7 @@ server.use(function (req, res, next) {
     });
     let actionContext = context.getActionContext(); 
 
-    debug('Executing navigate action');
+    console.log('Executing navigate action');
     //Check if protected resource
     let isProtected = actionContext.router.getRoute(req.url).config.admin;
     let user = req.session.user;
@@ -118,21 +118,17 @@ server.use(function (req, res, next) {
         debug('Exposing context state');
         var exposed = 'window.App=' + serialize(app.dehydrate(context)) + ';window.App.user='+JSON.stringify(user);
         debug('Rendering Application component into html');
-        var appComponent = app.getAppComponent();
-        React.withContext(context.getComponentContext(), () => {
-            let html = htmlComponent({
-                state: exposed,
-                markup: React.renderToString(appComponent())
-            });
-            let markup = React.renderToStaticMarkup(html);
-
-            if(server.get('env') === 'development') {
-                markup = markup.replace('</html>', '<script src="//localhost:35729/livereload.js"></script></html>');
-            }
-            debug('Sending markup');
-            res.write('<!DOCTYPE html>' + markup);
-            res.end();
-        });
+        var markup = React.renderToStaticMarkup(htmlComponent({
+            state: exposed,
+            context: context.getComponentContext(),
+            markup: React.renderToString(context.createElement({user:user}))
+        }));
+        if(server.get('env') === 'development') {
+            markup = markup.replace('</html>', '<script src="//localhost:35729/livereload.js"></script></html>');
+        }
+        debug('Sending markup');
+        res.write('<!DOCTYPE html>' + markup);
+        res.end();
     });
 });
 

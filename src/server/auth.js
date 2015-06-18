@@ -35,17 +35,17 @@ const Auth = {
 		}, resp => {
 			var responseData = '';
 			resp.on('end', () => {
-				var result = JSON.parse(responseData);
-				var idToken = JSON.parse(jwt.decode(result.id_token));
+				const result = JSON.parse(responseData);
+				const idToken = jwt.decode(result.id_token);
 				if (!idToken){
 					console.log('error: ', responseData);
 					res.write('fail');
 					res.end();
 					return;
 				} 
-				var user = config.users[idToken.sub];
+				const user = config.users[idToken.sub];
 				req.session.user = user;
-				console.log('Logged in '+ user);
+				console.log('Logged in '+ user.username);
 				console.log('Redirecting to ' + originalURL)
 				res.writeHead(302, {
 					Location: originalURL

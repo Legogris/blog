@@ -51,7 +51,7 @@ var conf = {
     },
 };
 
-conf.addVendor('react', bowerDir + '/react/react.min.js');
-conf.addVendor('fluxible', bowerDir + '/fluxible');
+conf.addVendor('react/addons', bowerDir + '/react/react-with-addons.min.js');
+conf.addVendor('react', bowerDir + '/react/react-with-addons.min.js');
 
 module.exports = conf;

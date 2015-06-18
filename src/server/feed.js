@@ -9,7 +9,7 @@ const Feed = {
 			Term.findOne({slug: category}).exec(), 
 			Post.find({cat: category}).exec()])
 		.then(result  => {
-			cat = result[0];
+			cat = result[0] || {title: ''};
 			posts = result[1];
 			var feed = new RSS({
 				title: site.title + ' - ' + cat.title,

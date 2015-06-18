@@ -20,29 +20,30 @@ const Application = React.createClass({
         this.executeAction(AuthActions.login, { originalURL: this.state.route.url });
     },
     getInitialState: function () {
-        return this.getState();
-    },
-    getState: function () {
         let appStore = this.getStore(ApplicationStore);
         let authStore = this.getStore(AuthStore);
         return {
-            user: authStore.getUser(),
+            user: this.props.user || authStore.getUser(),
             pageTitle: appStore.getPageTitle(),
             route: appStore.getCurrentRoute(),
             pages: appStore.getPages()
         };
     },
     onChange: function () {
-        this.setState(this.getState());
+        this.setState(this.getInitialState());
     },
     render: function () {
+        if(typeof this.props.user !== 'undefined') {
+            this.executeAction(AuthActions.loadUser, this.props.user);
+        }
         var output = '';
         if(this.state.route.config.admin && !this.state.user.admin) {
             this.login();
-            return;
+            return (<div />);
         }
         switch (this.state.route.name) {
             case 'edit':
+            case 'create':
                 output = <Editor />;
                 break;
         }
