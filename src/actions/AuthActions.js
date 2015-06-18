@@ -1,6 +1,12 @@
 'use strict';
 
 const AuthActions = {
+	loadUser: function(context, payload, done) {
+        context.dispatch('LOAD_USER', {
+            user: payload
+        });
+        done();
+	},
 	login: function(context, payload, done) {
 		context.service.read('auth', payload, {}, function(err, result) {
 			//This should only be ran from client

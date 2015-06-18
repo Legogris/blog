@@ -35,8 +35,15 @@ const Auth = {
 		}, resp => {
 			var responseData = '';
 			resp.on('end', () => {
+				console.log('AUTH END');
+				console.log(responseData);
 				var result = JSON.parse(responseData);
-				var idToken = JSON.parse(jwt.decode(result.id_token));
+				console.log(result);
+				var jwtToken = jwt.decode(result.id_token);
+				console.log('JWT');
+				console.log(jwtToken);
+				//
+				var idToken = jwtToken; //JSON.parse(jwtToken);
 				if (!idToken){
 					console.log('error: ', responseData);
 					res.write('fail');
@@ -45,7 +52,7 @@ const Auth = {
 				} 
 				var user = config.users[idToken.sub];
 				req.session.user = user;
-				console.log('Logged in '+ user);
+				console.log('Logged in '+ user.username);
 				console.log('Redirecting to ' + originalURL)
 				res.writeHead(302, {
 					Location: originalURL

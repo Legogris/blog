@@ -8,7 +8,7 @@ var fetchr = fetchrPlugin({ xhrPath: '/api' });
 
 // create new fluxible instance
 var app = new Fluxible({
-    appComponent: React.createFactory(require('./components/Application.jsx'))
+    component: React.createFactory(require('./components/Application.jsx'))
 });
 
 // add routes to the routr plugin

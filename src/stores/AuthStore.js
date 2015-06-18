@@ -16,7 +16,7 @@ const AuthStore = createStore({
 	},
 	onUser: function(payload) {
 		let oldUser = this.user;
-		this.user = payload.user || {username: '', admin: false}
+		this.user = payload.user || getAnonymousUser();
 		if(this.user.username !== oldUser.username ||
 		   this.user.admin !== oldUser.admin) {
 			this.emitChange();
