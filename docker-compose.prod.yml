@@ -2,16 +2,18 @@ web:
   extends:
     file: docker-compose.yml
     service: web
+  restart: always
   links:
     - mongo
-  ports:
-    - "3000:3000"
   environment:
     - VIRTUAL_HOST=remerge.net
-    - VIRTUAL_PORT=3000
+    - VIRTUAL_PORT=80
     - NODE_ENV=production
   #command: node --harmony src/server.js
 mongo:
   extends:
     file: docker-compose.yml
     service: mongo
+  restart: always
+  volumes:
+    - ./data:/data

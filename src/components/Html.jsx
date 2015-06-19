@@ -2,6 +2,7 @@
 const React = require('react');
 const FluxibleMixin = require('fluxible').FluxibleMixin;
 const ApplicationStore = require('../stores/ApplicationStore');
+const config = require('../configs/site');
 const Html = React.createClass({
     mixins: [FluxibleMixin],
     render: function() {
@@ -10,6 +11,9 @@ const Html = React.createClass({
             <head>
                 <meta charSet="utf-8" />
                 <title>{this.getStore(ApplicationStore).getPageTitle()}</title>
+                <meta property="og:title" content={this.getStore(ApplicationStore).getPageTitle()} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={config.url + this.getStore(ApplicationStore).getCurrentRoute().url} />
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" />
                 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" />

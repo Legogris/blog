@@ -1,6 +1,6 @@
 module.exports = {
 	url: 'http://remerge.net',
-	title: 'Den of Lego',
+	title: 'remerge.net',
 	author: 'Robert Edstrom',
-	description: 'I post stuff on <a href="/food">Vegan&nbsp;cooking&nbsp;in&nbsp;Japan</a>,<br /><a href="/hacking">programming</a> and<br /><a href="/sundry">other stuff</a>.'
+	description: 'Chronicle of the antics and ravings from an ambivalent sojourner.'
 }

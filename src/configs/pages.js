@@ -3,9 +3,9 @@ var routes = require('./routes');
 module.exports = {
 	topmenu: [
 	    {
-	        path: '/food',
-	        title: 'Food'
-	    },
+	        path: '/',
+	        title: 'Root'
+	    }/*,
 	    {
 	        path: '/hacking',
 	        title: 'Hacking'
@@ -14,6 +14,7 @@ module.exports = {
 	        path: '/sundry',
 	        title: 'Sundry'
 	    },
+	    */
 	],
 	sidebar: {
 	}

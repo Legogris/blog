@@ -14,6 +14,7 @@ const ApplicationStore = createStore({
         this.pageTitle = '';
     },
     onTitleChange: function(title) {
+        console.log('CHANGE TITLE', title)
         this.pageTitle = title;
     },
     onNavigate: function (route) {
@@ -30,6 +31,7 @@ const ApplicationStore = createStore({
         return this.pageTitle;
     },
     getCurrentRoute: function () {
+        console.log(this.currentRoute);
         return this.currentRoute;
     },
     getPages: function () {

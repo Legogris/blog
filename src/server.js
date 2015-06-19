@@ -14,6 +14,7 @@ const express = require('express');
 const serialize = require('serialize-javascript');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const favicon = require('serve-favicon');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
@@ -52,6 +53,7 @@ server.set('state namespace', 'App');
 server.use('/js', express.static(__dirname + '/../'+staticPath+'/js'));
 server.use('/css', express.static(__dirname + '/../'+staticPath+'/css'));
 server.use('/static', express.static(__dirname + '/../'+staticPath+'/static'));
+server.use(favicon(__dirname + '/../'+staticPath+'/static/favicon.ico'));
 
 server.get('/feed/:cat', (req, res) => {
     console.log(Feed.generate(req.params.cat, 20).then(feed => {
