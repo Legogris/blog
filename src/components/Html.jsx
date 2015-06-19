@@ -12,6 +12,7 @@ const Html = React.createClass({
                 <meta charSet="utf-8" />
                 <title>{this.getStore(ApplicationStore).getPageTitle()}</title>
                 <meta property="og:title" content={this.getStore(ApplicationStore).getPageTitle()} />
+                <meta property="og:description" content={this.getStore(ApplicationStore).getPageDescription()} />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content={config.url + this.getStore(ApplicationStore).getCurrentRoute().url} />
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />

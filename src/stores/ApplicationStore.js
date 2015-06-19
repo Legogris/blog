@@ -6,23 +6,25 @@ const ApplicationStore = createStore({
     storeName: 'ApplicationStore',
     handlers: {
         'CHANGE_ROUTE_SUCCESS' : 'onNavigate',
-        'UPDATE_PAGE_TITLE': 'onTitleChange'
+        'UPDATE_PAGE_TITLE': 'onTitleChange', //TODO: UPDATE_PAGE_META
+        'UPDATE_PAGE_DESCRIPTION': 'onDescriptionChange'
     },
     initialize: function () {
         this.currentRoute = null;
         this.pages = pagesConfig;
         this.pageTitle = '';
+        this.pageDescription = '';
     },
     onTitleChange: function(title) {
-        console.log('CHANGE TITLE', title)
         this.pageTitle = title;
+    },
+    onDescriptionChange: function(description) {
+        this.pageDescription = description;
     },
     onNavigate: function (route) {
         if (this.currentRoute && (this.currentRoute.url === route.url)) {
             return;
         }
-
-        var page = route.config.page;
 
         this.currentRoute = route;
         this.emitChange();
@@ -30,8 +32,10 @@ const ApplicationStore = createStore({
     getPageTitle: function () {
         return this.pageTitle;
     },
+    getPageDescription: function () {
+        return this.pageDescription;
+    },
     getCurrentRoute: function () {
-        console.log(this.currentRoute);
         return this.currentRoute;
     },
     getPages: function () {
@@ -41,13 +45,15 @@ const ApplicationStore = createStore({
         return {
             pages: this.pages,
             route: this.currentRoute,
-            pageTitle: this.pageTitle
+            pageTitle: this.pageTitle,
+            pageDescription: this.pageDescription
         };
     },
     rehydrate: function (state) {
         this.pages = state.pages;
         this.currentRoute = state.route;
         this.pageTitle = state.pageTitle;
+        this.pageDescription = state.pageDescription;
     }
 });
 

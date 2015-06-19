@@ -32,6 +32,7 @@ postSchema.set('toObject', {
 });
 postSchema.virtual('uri').get(() => '/' + this.cat + '/' + this.time.getFullYear() + '/' + this.slug );
 postSchema.virtual('absoluteURI').get(() => config.url + this.uri);
+postSchema.virtual('description').get(() => this.content.slice(0, config.descriptionLength) + '[...]');
 
 const Post = mongoose.model('Post', postSchema);
 

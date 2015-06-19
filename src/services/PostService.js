@@ -18,7 +18,7 @@ module.exports = {
 		});
 		let done = data => {
 			let posts = data[0];
-			let cat = data[1];
+			let cat = data[1] || params.cat;
 			let result = {
 				posts: posts.map(post => post.toObject()),
 				cat: cat,
