@@ -31,7 +31,7 @@
     "react": "^0.13.0",
     "rss": "^1.1.1",
     "serialize-javascript": "^1.0.0",
-    "serve-favicon": "^2.1.6"
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^4.4.3",

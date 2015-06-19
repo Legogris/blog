@@ -17,6 +17,7 @@ require('./static/justvectorv2-webfont.svg');
 require('./static/justvectorv2-webfont.ttf');
 require('./static/justvectorv2-webfont.woff');
 require('./static/justvectorv2-webfont.eot');
+require('./static/favicon.ico');
 require('./static/feed-icon.svg');
 require('./static/header-edge.png');
 require('./static/header-shadow.png');

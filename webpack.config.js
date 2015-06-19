@@ -43,7 +43,8 @@ var conf = {
             { test: /\.woff$/, loader: 'file?name=../static/[name].[ext]?mimetype=application/font-woff'},
             { test: /\.svg$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/svg+xml'},
             { test: /\.eot$/, loader: 'file?name=../static/[name].[ext]'},
-            { test: /\.png$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/png'}
+            { test: /\.png$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/png'},
+            { test: /\.ico$/, loader: 'file?name=../static/[name].[ext]?mimetype=image/png'}
         ]
     },
     stats: {
