@@ -43,7 +43,7 @@ const Page = React.createClass({
                 </section>
 	            <section className="share">
                     {page.hackerNewsID > 0 ? <a href={'https://news.ycombinator.com/item?id='+page.hackerNewsID} className="hn-link" title="Share on Hacker News" target="_blank">&#xf13b;</a> : null }
-                    <a href={'https://www.facebook.com/dialog/feed?sharer/sharer.php?u='+shareURI} className="facebook-link" title="Share on Facebook" target="_blank">&#xf125;</a>
+                    <a href={'https://www.facebook.com/sharer/sharer.php?u='+page.absoluteURI} className="facebook-link" title="Share on Facebook" target="_blank">&#xf125;</a>
                     <a href={'https://twitter.com/home?status='+shareTitle+'%20'+shareURI} className="twitter-link" title="Tweet" target="_blank">&#xf182;</a>
                     <a href={'//www.reddit.com/submit?url='+shareURI} className="reddit-link" title="Share on Reddit" target="_blank">&#xf16b;</a>
                     <a href={'https://plus.google.com/share?url='+shareURI} className="google-link" title="Share on Google+" target="_blank">&#xf135;</a>
