@@ -5,17 +5,21 @@ var loadPosts = function(context, done) {
 	return (err, result) => {
 		let posts = result.posts;
 		let cat = result.cat;
-		let title = config.title;
+		let title = '';
 		if(err || !posts) {
 			console.log('errorpost', err);
 		}
 		//TODO: posts === [], then  404
 		if(cat) {
-			title += ' - ' + (cat.title || cat);
+			title += cat.title || cat;
 		}
 		else if(posts.length === 1) {
-			title += ' - ' + posts[0].title;
+			title += posts[0].title;
 		}
+		if(title.length > 0) {
+			title += ' - ';
+		}
+		title += config.title;
 		let description = posts.length === 1 ? posts[0].description : config.description;
 		context.dispatch('UPDATE_PAGE_TITLE', title);
 		context.dispatch('UPDATE_PAGE_DESCRIPTION', description);

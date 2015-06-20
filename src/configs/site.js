@@ -3,5 +3,5 @@ module.exports = {
 	title: 'remerge.net',
 	author: 'Robert Edstrom',
 	description: 'Chronicle of the antics and ravings from an ambivalent sojourner.',
-	descriptionLength: 200
+	descriptionLength: 400
 }

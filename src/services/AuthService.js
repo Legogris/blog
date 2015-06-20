@@ -19,10 +19,8 @@ module.exports = {
 	name: 'auth',
 	makeAuthURL: makeAuthURL,
 	read: function(req, resource, params, config, cb) {
-		//console.log('AUTH SERVICE READ')
 		let redirect = makeAuthURL(params.originalURL);
 		callback(cb, req, {redirect: redirect});
-		//cb(null, {redirect: redirect});
 	},
 	ping: function(req, resource, params, config, cb) {
 		callback(cb, req, {});
